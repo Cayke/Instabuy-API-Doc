@@ -22,8 +22,6 @@ search: true
 
 Welcome to Instabuy's **REST** Client API. This API allows you to provide functions and data to your e-commerce website/app, like products, categories, carts, buys, etc.
 
-<aside class="warning">This documentation is in construction. If you find any error or have doubts, please mail me at cayke@instabuy.com.br</aside>
-
 ## URLs
 
 For development purpose you should use [http://dev.api.instabuy.com.br/apiv3](http://dev.api.instabuy.com.br/apiv3).
