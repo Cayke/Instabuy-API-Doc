@@ -234,6 +234,564 @@ Parameter | Type | Constraint | Description
 `id` | string | required | Address Id.
 
 
+# Buy
+This API allows you to retrieve and get buys.
+
+## Buy properties
+Attribute | Type | Description
+-------------- | -------------- | -------------- 
+`id` | string |	Unique identifier for the resource.
+`created_at` | datetime | The date the resource was created, as GMT.
+`code` | string | Buy code.
+`delivery_tax` | float | Buy delivery tax.
+`status_history` | Array | List of status history. See [Status History](#buy-status-history-properties).
+`status` | string | Buy actual status.
+`schedule` | boolean | If buy have scheduled delivery hour.
+`delivery_hour` | object | See [Delivery Hour](#buy-delivery-hour-properties).
+`billet_percent_discount` | float | Discount that should be applied to buy subtotal.
+`kits` | array | List of Kits. See [Kit](#buy-kit-properties).
+`payment_info` | object | See [Payment Info](#buy-payment-info-properties).
+`delivery_info` | object | See [Address](#address-properties).
+`comment` | string | Client buy comment.
+`products` | array | List of Products. See[Product](#buy-product-properties).
+
+## Buy - Status History properties
+Attribute | Type | Description
+-------------- | -------------- | -------------- 
+`created_at` | datetime | The date the resource was created, as GMT.
+`message` | string | Message.
+`old_status` | string | Old status.
+`new_status` | string | New status.
+
+## Buy - Delivery Hour properties
+Attribute | Type | Description
+-------------- | -------------- | -------------- 
+`delivery_date` | datetime | The date the resource was created, as GMT.
+`start_time` | string | Message.
+`end_time` | string | Old status.
+
+## Buy - Payment Info properties
+Attribute | Type | Description
+-------------- | -------------- | -------------- 
+`method` | string | Payment method.
+`value` | string | Payment value.
+
+## Buy - Product properties
+Attribute | Type | Description
+-------------- | -------------- | --------------
+`id` | string |	Unique identifier for the resource. 
+`bar_codes` | array | List of barcodes.
+`price` | float | Product unitary price.
+`qtd` | float | Product quantity.
+`unit_type` | string | Product unit type.
+`model_internal_code` | string | Product price internal code.
+`model_id` | string | Product price Id.
+`image` | string | Product image key.
+`model_title` | string | Product price title.
+`name` | string | Product name.
+
+## Buy - Kit properties
+Attribute | Type | Description
+-------------- | -------------- | --------------
+`id` | string |	Unique identifier for the resource. 
+`price` | float | Product unitary price.
+`qtd` | float | Product quantity.
+`image` | string | Product image key.
+`name` | string | Product name.
+`bundles` | array | List of bundles. See [Kit Bundle](#buy-kit-bundle-properties).
+
+## Buy - Kit Bundle properties
+Attribute | Type | Description
+-------------- | -------------- | --------------
+`id` | string |	Unique identifier for the resource. 
+`products` | array | List of bundle products. See [Kit Bundle Product](#buy-kit-bundle-product-properties).
+
+## Buy - Kit Bundle Product properties
+Attribute | Type | Description
+-------------- | -------------- | --------------
+`id` | string |	Unique identifier for the resource. 
+`qtd` | float | Product quantity.
+`name` | string | Product name.
+
+## Retrieve Buy
+This API retrieves all buys made on store.
+
+> JSON response example:
+
+```json
+{
+  "data": [
+    {
+      "delivery_tax": 12.0,
+      "created_at": "2019-04-04T21:00:21.275000+00:00",
+      "code": "8YHL-UBF5",
+      "id": "5ca670658050c003faefd46d",
+      "status_history": [
+        {
+          "created_at": "2019-04-04T21:01:25.873000+00:00",
+          "message": "Alteração de status: Esperando Autorização -> Cancelado. Motivo: teste",
+          "old_status": "ib_wait_auth",
+          "new_status": "ib_canceled"
+        }
+      ],
+      "status": "ib_canceled",
+      "delivery_hour": {
+        "end_time": "12:00",
+        "delivery_date": "2019-04-05T12:00:00+00:00",
+        "start_time": "08:00"
+      },
+      "billet_percent_discount": 0.0,
+      "store_id": "5a4d173b94e42937b3a6563a",
+      "kits": [
+        
+      ],
+      "payment_info": {
+        "method": "credit",
+        "value": "Visa"
+      },
+      "delivery_info": {
+        "state": "DF",
+        "street_number": "105",
+        "city": "Brasília",
+        "zipcode": "70278-020",
+        "street": "Quadra SQS 412 Bloco B",
+        "neighborhood": "Asa Sul",
+        "complement": ""
+      },
+      "device": "web",
+      "client": "56d1d826072d4127fb6fb9f9",
+      "platform": "store_web",
+      "buy_type": "deli",
+      "schedule": true,
+      "comment": "teste",
+      "products": [
+        {
+          "bar_codes": [
+            "7896445410510"
+          ],
+          "price": 16.99,
+          "qtd": 2.0,
+          "unit_type": "UNI",
+          "model_internal_code": "055293-3",
+          "model_id": "3859417c82f141d5",
+          "image": "5485e5e388de44cc900bcb4588dab285.jpg",
+          "model_title": "default",
+          "name": "Água INDAIÁ sem Gás 10L ",
+          "id": "5a73556994e4290629887f7b"
+        },
+        {
+          "bar_codes": [
+            "7891025106838"
+          ],
+          "price": 2.19,
+          "qtd": 3.0,
+          "unit_type": "UNI",
+          "model_internal_code": "054330-6",
+          "model_id": "6c686044363d49b6",
+          "image": "b7f868aac2744225973ada262bebc866.jpg",
+          "model_title": "default",
+          "name": "Iogurte Grego DANONE Frutas Vermelhas 100g ",
+          "id": "5a906f0b94e429040be13aa9"
+        },
+        {
+          "bar_codes": [
+            "7891025320623"
+          ],
+          "price": 6.99,
+          "qtd": 1.0,
+          "unit_type": "UNI",
+          "model_internal_code": "049063-6",
+          "model_id": "1c0b88ebf7554354",
+          "image": "5f2fea6d81e9488c86d51eaa5f37ec72.jpg",
+          "model_title": "default",
+          "name": "Iogurte Grego DANONE Frutas Vermelhas 400g ",
+          "id": "5a7b482b94e42929f89f3ee2"
+        },
+        {
+          "bar_codes": [
+            "7891000018750"
+          ],
+          "price": 1.99,
+          "qtd": 1.0,
+          "unit_type": "UNI",
+          "model_internal_code": "017804-7",
+          "model_id": "c5becf86cef641b3",
+          "image": "c0681da21ed2406e885fc6d5f0af5102.jpg",
+          "model_title": "default",
+          "name": "Bono Recheado NESTLÉ Chocolate 140g",
+          "id": "5a69eb9f94e4295629a6563b"
+        },
+        {
+          "bar_codes": [
+            "78910942"
+          ],
+          "price": 0.99,
+          "qtd": 3.0,
+          "unit_type": "UNI",
+          "model_internal_code": "017433-5",
+          "model_id": "1842f0498e6e451e",
+          "image": "28d4ac6e04974a30881c9a017772b5ed.jpg",
+          "model_title": "default",
+          "name": "Refrigerante GUARANÁ ANTARCTICA Caçulinha 237ml",
+          "id": "5a6b5ddf94e4291250a6563b"
+        },
+        {
+          "bar_codes": [
+            "7891962031170"
+          ],
+          "price": 1.19,
+          "qtd": 4.0,
+          "unit_type": "UNI",
+          "model_internal_code": "014205-0",
+          "model_id": "fb052197dc074053",
+          "image": "4ba8532eac62494f97712b5234a2e1f3.jpg",
+          "model_title": "default",
+          "name": "Bolinho BAUDUCCO Duo Chocolate 40g",
+          "id": "5a90455894e4296cdfe13aa9"
+        },
+        {
+          "bar_codes": [
+            "7892840226343",
+            "7892840267841"
+          ],
+          "price": 2.59,
+          "qtd": 4.0,
+          "unit_type": "UNI",
+          "model_internal_code": "015632-9",
+          "model_id": "932d486d05884764",
+          "image": "a5b899f0d907423388e54171ad51d0ae.jpeg",
+          "model_title": "default",
+          "name": "Biscoito EQLIBRI Panetini Presunto Parma 40g",
+          "id": "5aa80ada94e4292dece7902f"
+        },
+        {
+          "bar_codes": [
+            "7892840236144",
+            "7892840268046"
+          ],
+          "price": 2.59,
+          "qtd": 1.0,
+          "unit_type": "UNI",
+          "model_internal_code": "051204-4",
+          "model_id": "34ec7b3c4b9747e6",
+          "image": "241fdd1ce7d7444db983fba7d4a4b88a.jpg",
+          "model_title": "default",
+          "name": "Biscoito EQLIBRI Panetini Tomate Temperado 40g",
+          "id": "5a8c207d94e42970f4e13aa9"
+        },
+        {
+          "bar_codes": [
+            
+          ],
+          "price": 3.99,
+          "qtd": 0.9,
+          "unit_type": "UNI",
+          "model_internal_code": "000050-7",
+          "model_id": "f568769bab51472a",
+          "image": "efe91da7cefa45829d8c5ba5557a3c2d.jpg",
+          "model_title": "default",
+          "name": "Banana Nanica Kg",
+          "id": "5a55f4af94e429555aa6563a"
+        },
+        {
+          "bar_codes": [
+            "7893611120372"
+          ],
+          "price": 10.9,
+          "qtd": 1.0,
+          "unit_type": "UNI",
+          "model_internal_code": "057555-0",
+          "model_id": "ca81c4e069d64354",
+          "image": "597c9b07ad40423f8f61b34ae179e306.jpeg",
+          "model_title": "default",
+          "name": "Castanha do Pará REI DAS CASTANHAS sem Casca 90g",
+          "id": "5a561af794e4295e31a6563a"
+        },
+        {
+          "bar_codes": [
+            "7893611120334"
+          ],
+          "price": 11.9,
+          "qtd": 1.0,
+          "unit_type": "UNI",
+          "model_internal_code": "057557-7",
+          "model_id": "2142a16cdaae4e64",
+          "image": "782ceba4648d46d6b62ba2f5022ad6fa.jpeg",
+          "model_title": "default",
+          "name": "Castanha de Caju REI DAS CASTANHAS Natural 90g",
+          "id": "5a561c3694e4295e9fa6563a"
+        }
+      ],
+      "store_dict": {
+        "name": "BIG BOX Delivery",
+        "address": {
+          "state": "DF",
+          "street_number": " Bloco \"A\"",
+          "city": "Brasília",
+          "zipcode": "77813-650",
+          "street": "SHC/N EQ. 402/403",
+          "neighborhood": "Asa Norte",
+          "complement": ""
+        }
+      }
+    }
+  ],
+  "status": "success",
+  "count": 1,
+  "http_status": 200
+}
+```
+
+## Create Buy
+This API allows you to create buy for user. The products are automatically retrieved from user cart.
+
+> JSON response example:
+
+```json
+{
+  "data": [
+    {
+      "delivery_tax": 12.0,
+      "created_at": "2019-04-04T21:00:21.275000+00:00",
+      "code": "8YHL-UBF5",
+      "id": "5ca670658050c003faefd46d",
+      "status_history": [
+        {
+          "created_at": "2019-04-04T21:01:25.873000+00:00",
+          "message": "Alteração de status: Esperando Autorização -> Cancelado. Motivo: teste",
+          "old_status": "ib_wait_auth",
+          "new_status": "ib_canceled"
+        }
+      ],
+      "status": "ib_canceled",
+      "delivery_hour": {
+        "end_time": "12:00",
+        "delivery_date": "2019-04-05T12:00:00+00:00",
+        "start_time": "08:00"
+      },
+      "billet_percent_discount": 0.0,
+      "store_id": "5a4d173b94e42937b3a6563a",
+      "kits": [
+        
+      ],
+      "payment_info": {
+        "method": "credit",
+        "value": "Visa"
+      },
+      "delivery_info": {
+        "state": "DF",
+        "street_number": "105",
+        "city": "Brasília",
+        "zipcode": "70278-020",
+        "street": "Quadra SQS 412 Bloco B",
+        "neighborhood": "Asa Sul",
+        "complement": ""
+      },
+      "device": "web",
+      "client": "56d1d826072d4127fb6fb9f9",
+      "platform": "store_web",
+      "buy_type": "deli",
+      "schedule": true,
+      "comment": "teste",
+      "products": [
+        {
+          "bar_codes": [
+            "7896445410510"
+          ],
+          "price": 16.99,
+          "qtd": 2.0,
+          "unit_type": "UNI",
+          "model_internal_code": "055293-3",
+          "model_id": "3859417c82f141d5",
+          "image": "5485e5e388de44cc900bcb4588dab285.jpg",
+          "model_title": "default",
+          "name": "Água INDAIÁ sem Gás 10L ",
+          "id": "5a73556994e4290629887f7b"
+        },
+        {
+          "bar_codes": [
+            "7891025106838"
+          ],
+          "price": 2.19,
+          "qtd": 3.0,
+          "unit_type": "UNI",
+          "model_internal_code": "054330-6",
+          "model_id": "6c686044363d49b6",
+          "image": "b7f868aac2744225973ada262bebc866.jpg",
+          "model_title": "default",
+          "name": "Iogurte Grego DANONE Frutas Vermelhas 100g ",
+          "id": "5a906f0b94e429040be13aa9"
+        },
+        {
+          "bar_codes": [
+            "7891025320623"
+          ],
+          "price": 6.99,
+          "qtd": 1.0,
+          "unit_type": "UNI",
+          "model_internal_code": "049063-6",
+          "model_id": "1c0b88ebf7554354",
+          "image": "5f2fea6d81e9488c86d51eaa5f37ec72.jpg",
+          "model_title": "default",
+          "name": "Iogurte Grego DANONE Frutas Vermelhas 400g ",
+          "id": "5a7b482b94e42929f89f3ee2"
+        },
+        {
+          "bar_codes": [
+            "7891000018750"
+          ],
+          "price": 1.99,
+          "qtd": 1.0,
+          "unit_type": "UNI",
+          "model_internal_code": "017804-7",
+          "model_id": "c5becf86cef641b3",
+          "image": "c0681da21ed2406e885fc6d5f0af5102.jpg",
+          "model_title": "default",
+          "name": "Bono Recheado NESTLÉ Chocolate 140g",
+          "id": "5a69eb9f94e4295629a6563b"
+        },
+        {
+          "bar_codes": [
+            "78910942"
+          ],
+          "price": 0.99,
+          "qtd": 3.0,
+          "unit_type": "UNI",
+          "model_internal_code": "017433-5",
+          "model_id": "1842f0498e6e451e",
+          "image": "28d4ac6e04974a30881c9a017772b5ed.jpg",
+          "model_title": "default",
+          "name": "Refrigerante GUARANÁ ANTARCTICA Caçulinha 237ml",
+          "id": "5a6b5ddf94e4291250a6563b"
+        },
+        {
+          "bar_codes": [
+            "7891962031170"
+          ],
+          "price": 1.19,
+          "qtd": 4.0,
+          "unit_type": "UNI",
+          "model_internal_code": "014205-0",
+          "model_id": "fb052197dc074053",
+          "image": "4ba8532eac62494f97712b5234a2e1f3.jpg",
+          "model_title": "default",
+          "name": "Bolinho BAUDUCCO Duo Chocolate 40g",
+          "id": "5a90455894e4296cdfe13aa9"
+        },
+        {
+          "bar_codes": [
+            "7892840226343",
+            "7892840267841"
+          ],
+          "price": 2.59,
+          "qtd": 4.0,
+          "unit_type": "UNI",
+          "model_internal_code": "015632-9",
+          "model_id": "932d486d05884764",
+          "image": "a5b899f0d907423388e54171ad51d0ae.jpeg",
+          "model_title": "default",
+          "name": "Biscoito EQLIBRI Panetini Presunto Parma 40g",
+          "id": "5aa80ada94e4292dece7902f"
+        },
+        {
+          "bar_codes": [
+            "7892840236144",
+            "7892840268046"
+          ],
+          "price": 2.59,
+          "qtd": 1.0,
+          "unit_type": "UNI",
+          "model_internal_code": "051204-4",
+          "model_id": "34ec7b3c4b9747e6",
+          "image": "241fdd1ce7d7444db983fba7d4a4b88a.jpg",
+          "model_title": "default",
+          "name": "Biscoito EQLIBRI Panetini Tomate Temperado 40g",
+          "id": "5a8c207d94e42970f4e13aa9"
+        },
+        {
+          "bar_codes": [
+            
+          ],
+          "price": 3.99,
+          "qtd": 0.9,
+          "unit_type": "UNI",
+          "model_internal_code": "000050-7",
+          "model_id": "f568769bab51472a",
+          "image": "efe91da7cefa45829d8c5ba5557a3c2d.jpg",
+          "model_title": "default",
+          "name": "Banana Nanica Kg",
+          "id": "5a55f4af94e429555aa6563a"
+        },
+        {
+          "bar_codes": [
+            "7893611120372"
+          ],
+          "price": 10.9,
+          "qtd": 1.0,
+          "unit_type": "UNI",
+          "model_internal_code": "057555-0",
+          "model_id": "ca81c4e069d64354",
+          "image": "597c9b07ad40423f8f61b34ae179e306.jpeg",
+          "model_title": "default",
+          "name": "Castanha do Pará REI DAS CASTANHAS sem Casca 90g",
+          "id": "5a561af794e4295e31a6563a"
+        },
+        {
+          "bar_codes": [
+            "7893611120334"
+          ],
+          "price": 11.9,
+          "qtd": 1.0,
+          "unit_type": "UNI",
+          "model_internal_code": "057557-7",
+          "model_id": "2142a16cdaae4e64",
+          "image": "782ceba4648d46d6b62ba2f5022ad6fa.jpeg",
+          "model_title": "default",
+          "name": "Castanha de Caju REI DAS CASTANHAS Natural 90g",
+          "id": "5a561c3694e4295e9fa6563a"
+        }
+      ],
+      "store_dict": {
+        "name": "BIG BOX Delivery",
+        "address": {
+          "state": "DF",
+          "street_number": " Bloco \"A\"",
+          "city": "Brasília",
+          "zipcode": "77813-650",
+          "street": "SHC/N EQ. 402/403",
+          "neighborhood": "Asa Norte",
+          "complement": ""
+        }
+      }
+    }
+  ],
+  "status": "success",
+  "count": 1,
+  "http_status": 200
+}
+```
+### HTTP Request
+`POST /buy`
+
+#### Available parameters
+Parameter | Type | Constraint | Description
+-------------- | --------------  | -------------- | -------------- 
+`method_payment` | string | required | Buy method payment. Possible types: [`credit`, `check`, `debit`, `vale`, `cash`, `deposit`, `pagar_me_credit`, `pagar_me_billet`, `cielo_credit`, `cielo_debit`].
+`value_payment` | string | required | Buy payment value. If method uses `card`, pass `card id` as `value_payment`. If method is `cash`, pass `exchange` value. Otherwise, dont send it.
+`installments` | integer | required | Buy payment will be split in `installments` times.
+`buy_type` | string | required | Buy recieptment type. Possible types: [`deli`, `coll`, `service`, `pac`, `sedex`].
+`address_id` | string | required | If buy is `deli`, `pac` or `sedex`, you must pass delivery address Id.
+`delivery_time_id` | string | required | If store schedules buys, send delivery hour Id.
+`delivery_day` | string | required | If store schedules buys, send delivery day.
+`shipping_tax` | string | required | Delivery/Shipping tax.
+`items_total` | string | required | Buy subtotal(Items price).
+`buy_total` | string | required | Buy total value. Subtotal + shipping - discounts.
+`coupon_code` | string | optional | Coupon code.
+`comment` | string | optional | Buy comment.
+`device` | string | optional | Client Device Identifier.
+`platform` | string | required | Client platform Identifier. Possible types: [`store_web`, `ib_web`, `store_android`, `store_ios`, `ib_android`, `ib_ios`, `unknown`].
+`should_replace_missing_products` | string | optional | Client permission to store replacing missing products for equivalents.
+
 # Card
 This API allows you to retrive, add and delete user's credit card.
 
@@ -802,6 +1360,34 @@ This API removes all items from cart.
 ### HTTP Request
 `DELETE /cart`
 
+# Contact Message
+This API allows user to send a contact email to store.
+
+> JSON response example:
+
+```json
+{  
+   "data":"ok",
+   "status":"success",
+   "count":0,
+   "http_status":200
+}
+```
+
+### HTTP Request
+`POST /message`
+
+#### Available parameters
+Parameter | Type | Constraint | Description
+-------------- | --------------  | -------------- | -------------- 
+`email` | string | required | Client email.
+`message` | string | required | Contact message.
+`phone` | string | optional | Client phone.
+`name` | string | optional | Cliente name.
+`device` | string | optional | From what device the message were sent.
+`file` | File | optional | An attachment File. Max 2mb size.
+
+
 # Coupon
 This API allows you to get coupons.
 
@@ -1315,6 +1901,1158 @@ Parameter | Type | Constraint | Description
 -------------- | -------------- | -------------- | -------------- 
 `category_id` | string | required | Get Items Filters from Category.
 
+# Layout 
+This API allow you to get the home page items and banners.
+
+## Layout properties
+Attribute | Type | Description
+-------------- | -------------- | -------------- 
+`promo` | array |	List of Items in Promotion. See [Item properties](#item-properties).
+`collection_items` | array | List of Categories. See [Collection properties](#item-collection-properties).
+`banners` | array | List of Banners. See [Banner properties](#item-banner-properties).
+
+## Layout - Collection properties
+Attribute | Type | Description
+-------------- | -------------- | -------------- 
+`id` | string |	Unique identifier for the resource.
+`title` | string |	Category title.
+`slug` | string | Category slug.
+`items` | array |	List of Items in Promotion. See [Item properties](#item-properties).
+
+## Layout - Banner properties
+Attribute | Type | Description
+-------------- | -------------- | -------------- 
+`id` | string |	Unique identifier for the resource.
+`show_order` | integer |	Banner show order position.
+`href` | string | Banner redirect URL on click.
+`image` | string | Banner image key.
+`title` | string | Banner title.
+
+## Retrieve Layout
+This API helps you to view all the categories and subcategories.
+
+> JSON response example:
+
+```json
+{
+  "data": {
+    "banners": [
+      {
+        "show_order": 1,
+        "href": "p/562ae092072d4170b4289f8e/sapatenis-polo-hpc",
+        "id": "5b5e737e017ce2a4dff1b1f7",
+        "image": "2016041413500376793338371cac7b784f09be458dc25bf70697.jpg",
+        "title": "oslosko"
+      }
+    ],
+    "promo": [
+      {
+        "variation_items": [
+          "562ada29072d417077289f8e"
+        ],
+        "id": "562ad9ff072d417074289f8e",
+        "available_stock": true,
+        "name": "Sutiã Calvin Klein unidadeerwear Push Up",
+        "prices": [
+          {
+            "cls": "IBItemPrice",
+            "promo_price": 90.0,
+            "id": "487fad399b7546e2",
+            "title": "default",
+            "internal_code": "CA700APF82IZH",
+            "bar_codes": [
+              "7892840268046"
+            ],
+            "promo_end_at": "2019-05-31T15:22:59+00:00",
+            "price": 119.0,
+            "qtd_stock": -1.0
+          }
+        ],
+        "slug": "Sutia-Calvin-Klein-Underwear-Push-Up",
+        "custom_infos": [
+          
+        ],
+        "min_price_valid": 90.0,
+        "shipping": {
+          "width": 1.0,
+          "processing_days": 0,
+          "height": 1.0,
+          "length": 1.0,
+          "cls": "IBProductShipping",
+          "weight": 0.01,
+          "deliverable": true
+        },
+        "description": "DETALHES DO PRODUTO\r\n\r\nSutiã Calvin Klein Underwear Push Up Nadador Renda Preto, com recorte nadador em renda, aro e bojo bolha. Tem modelagem push up, elástico inferior e alça finas reguláveis. Fechamento frontal por encaixe.\r\n\r\nConfeccionada em malha macia de toque suave.\r\n\r\nAltura da taça: 17cm/ Largura da taça: 18cm/ Tamanho: 36B.\r\nMedidas da Modelo: Altura: 1,71m / Busto: 86cm / Cintura: 59cm / Quadril: 89cm.\r\nINFORMAÇÕES\r\n\r\nSKU\t CA700APF82IZH\r\nMaterial\tPoliamida\r\nComposição\t90% Poliamida/ 10% Elastano\r\nCor\tPreto\r\nLavagem\tLavar a mão",
+        "unit_type": "UNI",
+        "increment_value": 1.0,
+        "brand": "Calvin Klein Underwear",
+        "related_items": [
+          
+        ],
+        "images": [
+          "2015102418121829759be270ce856340409718f0300c175244.jpg",
+          "20151024181441855df61508ae8e8443f82e626e50ffd7ab4.jpg",
+          "20151024181484131781f18d9c59914c83b34b1232128f260c.jpg",
+          "20151024181545463914c54572d9b44d5c80fed56d1ed189fb.jpg"
+        ],
+        "item_type": "product",
+        "subcategory_ids": [
+          "562ad5e9072d41704f289f8e"
+        ]
+      }
+    ],
+    "collection_items": [
+      {
+        "id": "562acd4a072d417016289f8e",
+        "title": "Calçados Masculinos",
+        "slug": "Calcados-Masculinos",
+        "items": [
+          {
+            "variation_items": [
+              "563bd359072d41636efcdf30"
+            ],
+            "id": "562ae092072d4170b4289f8e",
+            "available_stock": true,
+            "name": "Sapatênis Polo HPC Preto",
+            "prices": [
+              {
+                "cls": "IBItemPrice",
+                "id": "1fb6c3f26b36428f",
+                "title": "default",
+                "internal_code": "PO091SHM72FQH",
+                "bar_codes": [
+                  
+                ],
+                "price": 169.0,
+                "qtd_stock": -1.0
+              }
+            ],
+            "slug": "Sapatenis-Polo-HPC-Preto",
+            "custom_infos": [
+              
+            ],
+            "min_price_valid": 169.0,
+            "shipping": {
+              "width": 1.0,
+              "processing_days": 0,
+              "height": 1.0,
+              "length": 1.0,
+              "cls": "IBProductShipping",
+              "weight": 0.01,
+              "deliverable": true
+            },
+            "description": "DETALHES DO PRODUTO\r\n\r\nO Sapatênis Polo HPC preto é confeccionado em lona com design iate. Apresenta bordado da marca e fecho em cadarço. Conta, ainda, com interior e palmilha macios, além de solado de borracha.\r\nINFORMAÇÕES\r\n\r\nSKU \tPO091SHM72FQH\r\nModelo\tPolo HPC RP-1602\r\nMaterial Externo\tTêxtil\r\nMaterial Interno\tTêxtil\r\nMaterial externo da sola\tBorracha\r\nCor\tPreto",
+            "unit_type": "UNI",
+            "increment_value": 1.0,
+            "brand": "Polo HPC",
+            "related_items": [
+              
+            ],
+            "recurring_plan": {
+              "trial_days": 0,
+              "days": 30,
+              "is_billet": true,
+              "max_charges": 3,
+              "is_credit": true,
+              "cls": "IBItemPlan"
+            },
+            "images": [
+              "2015102413616602701d3812c6d09a54eae99801f107e109287.jpg",
+              "20151024136179109673283e40ea200446e9e1adcaa2d5919c9.jpg"
+            ],
+            "item_type": "product",
+            "subcategory_ids": [
+              "562ae061072d4170a9289f8e"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "562acdf6072d41701b289f8e",
+        "title": "Roupas Femininas",
+        "slug": "Roupas-Femininas",
+        "items": [
+          {
+            "variation_items": [
+              "562ad2b5072d417040289f8e",
+              "562ad269072d41703d289f8e",
+              "562ada29072d417077289f8e"
+            ],
+            "id": "562ad1bc072d417034289f8e",
+            "available_stock": true,
+            "name": "Blusa Lança Perfume Floral Multicolorida",
+            "prices": [
+              {
+                "cls": "IBItemPrice",
+                "id": "3fdef4d17a1d4122",
+                "title": "default",
+                "internal_code": "1",
+                "bar_codes": [
+                  "7896496917044"
+                ],
+                "price": 129.9,
+                "qtd_stock": -1.0
+              }
+            ],
+            "slug": "Blusa-Lanca-Perfume-Floral-Multicolorida",
+            "custom_infos": [
+              
+            ],
+            "min_price_valid": 129.9,
+            "shipping": {
+              "width": 1.0,
+              "processing_days": 0,
+              "height": 1.0,
+              "length": 1.0,
+              "cls": "IBProductShipping",
+              "weight": 0.01,
+              "deliverable": true
+            },
+            "description": "DETALHES DO PRODUTO\r\n\r\nA Blusa Lança Perfume Floral Multicolorida apresenta modelagem reta, estampa floral e mangas 3/4. Confeccionada em poliéster e elastano, oferece caimento leve e mobilidade. Medidas da Modelo: Altura: 1,79m / Busto: 87cm / Cintura: 62cm / Quadril: 90cm.\r\n\r\nOmbro: 12cm/ Manga: 31cm/ Busto: 84cm/ Comprimento: 53cm. Tamanho P.\r\nINFORMAÇÕES\r\n\r\nSKU \tLA906APF77OBE\r\nModelo\tLança Perfume 02BL240600\r\nComposição: 96% poliéster 4% elastano.\r\nCor\tMulticolorido",
+            "unit_type": "UNI",
+            "increment_value": 1.0,
+            "brand": "Lança Perfume",
+            "show_in_main_page": true,
+            "related_items": [
+              "562ad269072d41703d289f8e",
+              "562ad2b5072d417040289f8e"
+            ],
+            "images": [
+              "20151024032583937874d2b6235ecf64288b1d645b708003b36.jpg",
+              "20151024033022042628cfd7509aff418ab77257d2255cf326.jpg"
+            ],
+            "item_type": "product",
+            "subcategory_ids": [
+              "562ad0e4072d41701b289f8f"
+            ]
+          },
+          {
+            "variation_items": [
+              "562ada29072d417077289f8e"
+            ],
+            "id": "562ad9ff072d417074289f8e",
+            "available_stock": true,
+            "name": "Sutiã Calvin Klein unidadeerwear Push Up",
+            "prices": [
+              {
+                "cls": "IBItemPrice",
+                "promo_price": 90.0,
+                "id": "487fad399b7546e2",
+                "title": "default",
+                "internal_code": "CA700APF82IZH",
+                "bar_codes": [
+                  "7892840268046"
+                ],
+                "promo_end_at": "2019-05-31T15:22:59+00:00",
+                "price": 119.0,
+                "qtd_stock": -1.0
+              }
+            ],
+            "slug": "Sutia-Calvin-Klein-Underwear-Push-Up",
+            "custom_infos": [
+              
+            ],
+            "min_price_valid": 90.0,
+            "shipping": {
+              "width": 1.0,
+              "processing_days": 0,
+              "height": 1.0,
+              "length": 1.0,
+              "cls": "IBProductShipping",
+              "weight": 0.01,
+              "deliverable": true
+            },
+            "description": "DETALHES DO PRODUTO\r\n\r\nSutiã Calvin Klein Underwear Push Up Nadador Renda Preto, com recorte nadador em renda, aro e bojo bolha. Tem modelagem push up, elástico inferior e alça finas reguláveis. Fechamento frontal por encaixe.\r\n\r\nConfeccionada em malha macia de toque suave.\r\n\r\nAltura da taça: 17cm/ Largura da taça: 18cm/ Tamanho: 36B.\r\nMedidas da Modelo: Altura: 1,71m / Busto: 86cm / Cintura: 59cm / Quadril: 89cm.\r\nINFORMAÇÕES\r\n\r\nSKU\t CA700APF82IZH\r\nMaterial\tPoliamida\r\nComposição\t90% Poliamida/ 10% Elastano\r\nCor\tPreto\r\nLavagem\tLavar a mão",
+            "unit_type": "UNI",
+            "increment_value": 1.0,
+            "brand": "Calvin Klein Underwear",
+            "related_items": [
+              
+            ],
+            "images": [
+              "2015102418121829759be270ce856340409718f0300c175244.jpg",
+              "20151024181441855df61508ae8e8443f82e626e50ffd7ab4.jpg",
+              "20151024181484131781f18d9c59914c83b34b1232128f260c.jpg",
+              "20151024181545463914c54572d9b44d5c80fed56d1ed189fb.jpg"
+            ],
+            "item_type": "product",
+            "subcategory_ids": [
+              "562ad5e9072d41704f289f8e"
+            ]
+          },
+          {
+            "variation_items": [
+              "562ad269072d41703d289f8e",
+              "562ad1bc072d417034289f8e"
+            ],
+            "id": "562addf0072d41709b289f8f",
+            "available_stock": true,
+            "name": "Bermuda Sarja Reserva Army Básica",
+            "prices": [
+              {
+                "cls": "IBItemPrice",
+                "id": "200749d4cc814f12",
+                "title": "default",
+                "internal_code": "RE499APM49PRQDB",
+                "bar_codes": [
+                  "7892840268046"
+                ],
+                "price": 90.15,
+                "qtd_stock": -1.0
+              }
+            ],
+            "slug": "Bermuda-Sarja-Reserva-Army-Basica",
+            "custom_infos": [
+              {
+                "value": "39cm",
+                "field": "5b928eb4017ce27d51863aef",
+                "cls": "IBItemCustomInfo"
+              }
+            ],
+            "min_price_valid": 90.15,
+            "shipping": {
+              "width": 1.0,
+              "processing_days": 0,
+              "height": 1.0,
+              "length": 1.0,
+              "cls": "IBProductShipping",
+              "weight": 0.5,
+              "deliverable": true
+            },
+            "description": "DETALHES DO PRODUTO\r\n\r\nBermuda Sarja Reserva Army Básica Verona preta, com quatro bolsos e bordado da marca localizado. Tem modelagem reta, gancho médio e cinco passantes no cós. \r\n\r\nConfeccionada em sarja macia. Fechamento por zíper e botão. Acompanha cinto.\r\n\r\nCintura: 86cm/ Quadril: 104cm/ Gancho: 22cm/ Comprimento: 52cm/ Tamanho: 40. \r\n\r\nMedidas do Modelo: Altura 1,88m / Tórax 94cm / Manequim 40.\r\nINFORMAÇÕES\r\n\r\nSKU \tRE499APM49PRQ\r\nModelo\tReserva 1553\r\nMaterial\tAlgodão\r\nComposição\t100% Algodão\r\nCor\tPreto\r\nLavagem\tPode ser lavado na máquina",
+            "unit_type": "UNI",
+            "increment_value": 1.0,
+            "brand": "Reserva 2",
+            "related_items": [
+              
+            ],
+            "images": [
+              "2015102412525016200d8ac27ff0344a8db2fb3a59faa7d513.jpg",
+              "2015102412539650503f10e3528dbe46bb92826701b088e52d.jpg"
+            ],
+            "attachment": "https://s3-sa-east-1.amazonaws.com/ib.files.general/a809ad71339a4c808696243534350a09.jpg",
+            "item_type": "product",
+            "subcategory_ids": [
+              "562add93072d41709b289f8e",
+              "562ad0e4072d41701b289f8f",
+              "562ad4f5072d417049289f8e"
+            ]
+          },
+          {
+            "variation_items": [
+              "562ad9ff072d417074289f8e",
+              "562ad2b5072d417040289f8e",
+              "562ad1bc072d417034289f8e",
+              "562ad269072d41703d289f8e"
+            ],
+            "id": "562ada29072d417077289f8e",
+            "available_stock": true,
+            "name": "Top Sofia By Vix Long Beach Multicolorido",
+            "prices": [
+              {
+                "cls": "IBItemPrice",
+                "id": "56b5335383eb4d25",
+                "title": "default",
+                "internal_code": "SO327APF44SZN",
+                "bar_codes": [
+                  "7896058502107"
+                ],
+                "price": 239.0,
+                "qtd_stock": -1.0
+              }
+            ],
+            "slug": "Top-Sofia-By-Vix-Long-Beach-Multicolorido",
+            "custom_infos": [
+              
+            ],
+            "min_price_valid": 239.0,
+            "shipping": {
+              "width": 1.0,
+              "processing_days": 0,
+              "height": 1.0,
+              "length": 1.0,
+              "cls": "IBProductShipping",
+              "weight": 0.01,
+              "deliverable": true
+            },
+            "description": "DETALHES DO PRODUTO\r\n\r\nTop Sofia By Vix Long Beach Multicolorido com estampa em tons contrastantes, bojo, modelagem cortininha, alça opcional, detalhes metalizados e fechamento por amarração. \r\n\r\nConfeccionada em tecido de poliamida com elastano. \r\n\r\nMedidas: Largura da taça: 16cm / Altura da taça: 12cm / Tamanho: P\r\n\r\nMedidas da Modelo: Altura 1,70m / Busto: 83cm / Cintura: 58cm / Quadril: 87cm.\r\nINFORMAÇÕES\r\n\r\nSKU \tSO327APF44SZN\r\nModelo\tSofia SC161106\r\nMaterial\tPoliamida\r\nComposição\t75% Poliamida/25% Elastano\r\nCor\tMulticolorido\r\nLavagem\tLavar a mão",
+            "unit_type": "UNI",
+            "increment_value": 1.0,
+            "brand": "Sofia",
+            "related_items": [
+              "562ad9ff072d417074289f8e",
+              "562ad2b5072d417040289f8e",
+              "562ad1bc072d417034289f8e",
+              "562ad269072d41703d289f8e"
+            ],
+            "images": [
+              "2015102418555064573e653ad8bab643e5b93ea0ea31be938f.jpg",
+              "201510241857440183f67ba4351d154f15927c0d9c018b45b4.jpg"
+            ],
+            "item_type": "product",
+            "subcategory_ids": [
+              "562ad631072d417052289f8f"
+            ]
+          },
+          {
+            "variation_items": [
+              
+            ],
+            "id": "562ad946072d41706f289f8e",
+            "available_stock": true,
+            "name": "Casaco MNG Barcelona Lasu Off-white",
+            "prices": [
+              {
+                "cls": "IBItemPrice",
+                "id": "2564ad2cd996471a",
+                "title": "default",
+                "internal_code": "MN408APF24HMD",
+                "bar_codes": [
+                  
+                ],
+                "price": 399.9,
+                "qtd_stock": -1.0
+              }
+            ],
+            "slug": "Casaco-MNG-Barcelona-Lasu-Off-white",
+            "custom_infos": [
+              
+            ],
+            "min_price_valid": 399.9,
+            "shipping": {
+              "width": 1.0,
+              "processing_days": 0,
+              "height": 1.0,
+              "length": 1.0,
+              "cls": "IBProductShipping",
+              "weight": 0.01,
+              "deliverable": true
+            },
+            "description": "DETALHES DO PRODUTO\r\n\r\nO Casaco MNG Barcelona Lasu off-white apresenta recortes aparentes. Traz modelagem reta, mangas longas e abertura frontal.\r\n\r\nConfeccionado em tecido plano com toque macio. Acompanha forro. Medidas da Modelo: Altura 1,70m / Busto: 83cm / Cintura: 58cm / Quadril: 87cm.\r\n\r\nOmbro: 12cm/ Manga: 60cm/ Busto: 94cm/ Comprimento: 64cm/ Tamanho: P.\r\nINFORMAÇÕES\r\n\r\nSKU \tMN408APF24HMD\r\nModelo\tMNG Barcelona 44057600\r\nMaterial\tPoliéster\r\nComposição\tTecido Plano: 91%poliéster/ 9%elastano Forro: 100%poliéster\r\nCor\tBranco\r\nLavagem\tLavar a seco",
+            "unit_type": "UNI",
+            "increment_value": 1.0,
+            "brand": "MNG Barcelona",
+            "related_items": [
+              
+            ],
+            "images": [
+              "20151024158833882fe614bfb2a9240b1b84e8cf0580f0862.jpg",
+              "20151024151050984641d26f6236ee44e790d210fa2ce93b62.jpg"
+            ],
+            "item_type": "product",
+            "subcategory_ids": [
+              "562ad5aa072d417052289f8e"
+            ]
+          },
+          {
+            "variation_items": [
+              
+            ],
+            "id": "562ad865072d417068289f8e",
+            "available_stock": true,
+            "name": "Vestido Mercatto Étnico Verde",
+            "prices": [
+              {
+                "cls": "IBItemPrice",
+                "id": "89f2870c14264d13",
+                "title": "default",
+                "internal_code": "ME126APF14PCR",
+                "bar_codes": [
+                  
+                ],
+                "price": 119.9,
+                "qtd_stock": -1.0
+              }
+            ],
+            "slug": "Vestido-Mercatto-Etnico-Verde",
+            "custom_infos": [
+              
+            ],
+            "min_price_valid": 119.9,
+            "shipping": {
+              "width": 1.0,
+              "processing_days": 0,
+              "height": 1.0,
+              "length": 1.0,
+              "cls": "IBProductShipping",
+              "weight": 0.01,
+              "deliverable": true
+            },
+            "description": "DETALHES DO PRODUTO\r\n\r\nVestido Mercatto Étnico verde, com estampa étnica ao longo da superfície, recorte em elástico, além de tiras cruzadas com ajuste frontal. Traz modelagem evasê, alças finas e decote arredondado.\r\n\r\nConfeccionado em tecido plano, que oferece toque macio.\r\n\r\nBusto: 94cm/ Comprimento: 96cm/ Tamanho: P. \r\n\r\nMedidas da modelo: Altura 1,79m / Busto 82cm / Cintura 63cm / Quadril 87cm.\r\nINFORMAÇÕES\r\n\r\nSKU \tME126APF14PCR\r\nModelo\tMercatto 2826526\r\nMaterial\tViscose\r\nComposição\tTecido Plano 100%viscose\r\nCor\tVerde\r\nLavagem\tLavar a mão",
+            "unit_type": "UNI",
+            "increment_value": 1.0,
+            "brand": "Mercatto",
+            "related_items": [
+              
+            ],
+            "images": [
+              "201510241122923368de8c4aa8d1384aebb6a0bba76bc6eb62.jpg",
+              "201510241124805889af6a5ada65bd4d21b182ff345e1f9b76.jpg"
+            ],
+            "item_type": "product",
+            "subcategory_ids": [
+              "562ad6de072d417061289f8e"
+            ]
+          },
+          {
+            "variation_items": [
+              
+            ],
+            "id": "562ad55e072d417049289f8f",
+            "available_stock": true,
+            "name": "Calça Jeans Levis Super Skinny Azul",
+            "prices": [
+              {
+                "cls": "IBItemPrice",
+                "id": "86aa1149fbec4c99",
+                "title": "default",
+                "internal_code": "LE886APF42AVH",
+                "bar_codes": [
+                  
+                ],
+                "price": 219.0,
+                "qtd_stock": -1.0
+              }
+            ],
+            "slug": "Calca-Jeans-Levis-Super-Skinny-Azul",
+            "custom_infos": [
+              
+            ],
+            "min_price_valid": 219.0,
+            "shipping": {
+              "width": 1.0,
+              "processing_days": 0,
+              "height": 1.0,
+              "length": 1.0,
+              "cls": "IBProductShipping",
+              "weight": 0.01,
+              "deliverable": true
+            },
+            "description": "DETALHES DO PRODUTO\r\n\r\nA Calça Jeans Levis Super Skinny azul possui lavagem estonada, pespontos contrastantes, detalhes de rebites, puídos propositais e cinco bolsos. Modelagem super skinny e fechamento por botão e zíper. \r\n\r\nConfeccionada em jeans maleável de caimento acentuado e toque confortável.\r\n\r\nCintura: 70cm / Quadril: 86cm / Gancho: 21cm / Comprimento: 100cm Tamanho: 28. \r\n\r\nMedidas da Modelo: Altura: 1,74m / Busto: 90cm / Cintura: 65cm / Quadril: 94cm.\r\nINFORMAÇÕES\r\n\r\nSKU \tLE886APF42AVH\r\nModelo\tLevis 177810001\r\nMaterial\tAlgodão\r\nComposição\tJeans: 68% Algodão / 23% Poliéster / 6% Viscose / 1% Elastano\r\nCor\tAzul\r\nLavagem\tPode ser lavado na máquina",
+            "unit_type": "UNI",
+            "increment_value": 1.0,
+            "brand": "Levis",
+            "related_items": [
+              
+            ],
+            "images": [
+              "20151024048286698998e226c4ef2a34be395e07abafe12e0fc.jpg",
+              "20151024048303155116e573c0137084933ab82b4ab3e4f45e1.jpg"
+            ],
+            "item_type": "product",
+            "subcategory_ids": [
+              "562ad4f5072d417049289f8e"
+            ]
+          },
+          {
+            "variation_items": [
+              
+            ],
+            "id": "562ad422072d417043289f8e",
+            "available_stock": true,
+            "name": "Regata Jeans Colcci Comfort Azul",
+            "prices": [
+              {
+                "cls": "IBItemPrice",
+                "id": "76a0455a17fc4964",
+                "title": "default",
+                "internal_code": "CO515APF96APJ",
+                "bar_codes": [
+                  
+                ],
+                "price": 184.0,
+                "qtd_stock": -1.0
+              }
+            ],
+            "slug": "Regata-Jeans-Colcci-Comfort-Azul",
+            "custom_infos": [
+              
+            ],
+            "min_price_valid": 184.0,
+            "shipping": {
+              "width": 1.0,
+              "processing_days": 0,
+              "height": 1.0,
+              "length": 1.0,
+              "cls": "IBProductShipping",
+              "weight": 0.01,
+              "deliverable": true
+            },
+            "description": "DETALHES DO PRODUTO\r\n\r\nRegata Jeans Colcci Comfort Azul, com lavagem delavê e bolso frontal. Tem modelagem mullet, cotas nadador e decote redondo.\r\n\r\nConfeccionada em jeans macio e maleável. \r\n\r\nBusto: 90cm/ Comprimento: 63cm/ Tamanho: P. \r\n\r\nMedidas da Modelo: Altura:1,71m / Busto: 82cm / Cintura: 60cm / Quadril: 90cm.\r\nINFORMAÇÕES\r\n\r\nSKU \tCO515APF96APJ\r\nModelo\tColcci 380102021\r\nMaterial\tAlgodão\r\nComposição\t100% Algodão\r\nCor\tAzul\r\nLavagem\tPode ser lavado na máquina",
+            "unit_type": "UNI",
+            "increment_value": 1.0,
+            "brand": "Colcci ",
+            "related_items": [
+              
+            ],
+            "images": [
+              "20151024043127923810d9446f18f994da890145190b9174212.jpg",
+              "20151024043144736316ad55fc623ef42beb6cdc130665f6e00.jpg"
+            ],
+            "item_type": "product",
+            "subcategory_ids": [
+              "562ad0e4072d41701b289f8f"
+            ]
+          },
+          {
+            "variation_items": [
+              
+            ],
+            "id": "562ad3dd072d417046289f8e",
+            "available_stock": true,
+            "name": "Regata Cantão Silk Azulejo Azul",
+            "prices": [
+              {
+                "cls": "IBItemPrice",
+                "id": "196facf0ea9d4657",
+                "title": "default",
+                "internal_code": "CA558APF85IUG",
+                "bar_codes": [
+                  
+                ],
+                "price": 139.0,
+                "qtd_stock": -1.0
+              }
+            ],
+            "slug": "Regata-Cantao-Silk-Azulejo-Azul",
+            "custom_infos": [
+              
+            ],
+            "min_price_valid": 139.0,
+            "shipping": {
+              "width": 1.0,
+              "processing_days": 0,
+              "height": 1.0,
+              "length": 1.0,
+              "cls": "IBProductShipping",
+              "weight": 0.01,
+              "deliverable": true
+            },
+            "description": "DETALHES DO PRODUTO\r\n\r\nRegata Cantão Silk Azulejo Azul, com estampa inspirada em azulejos, modelagem cropped e decote redondo.\r\n\r\nConfeccionada em malha grossa.\r\n\r\nBusto: 80cm/ Comprimento: 92cm/ Tamanho: P. \r\n\r\nComposição: 94% Poliéster/ 6% Elastano. \r\n\r\nMedidas da Modelo: Altura 1,77m / Busto: 81cm / Cintura: 59cm / Quadril: 89cm.\r\nINFORMAÇÕES\r\n\r\nSKU \tCA558APF85IUG\r\nModelo\tCantão 514051\r\nMaterial\tPoliéster\r\nComposição\t94% Poliéster/ 6% elastano\r\nCor\tAzul\r\nLavagem\tLavar a mão",
+            "unit_type": "UNI",
+            "increment_value": 1.0,
+            "brand": "Cantão",
+            "related_items": [
+              
+            ],
+            "images": [
+              "201510240422741115a8cd804ba9a848c8be69aab1e3e0b1e2.jpg",
+              "201510240424246210320679804af747aea9c5c2d65064142c.jpg"
+            ],
+            "item_type": "product",
+            "subcategory_ids": [
+              "562ad0e4072d41701b289f8f"
+            ]
+          },
+          {
+            "variation_items": [
+              
+            ],
+            "id": "562ad2ea072d41703d289f8f",
+            "available_stock": true,
+            "name": "Camiseta Colcci Clean Azul",
+            "prices": [
+              {
+                "cls": "IBItemPrice",
+                "id": "e146b29f1a24429b",
+                "title": "default",
+                "internal_code": "4",
+                "bar_codes": [
+                  
+                ],
+                "price": 65.0,
+                "qtd_stock": -1.0
+              }
+            ],
+            "slug": "Camiseta-Colcci-Clean-Azul",
+            "custom_infos": [
+              
+            ],
+            "min_price_valid": 65.0,
+            "shipping": {
+              "width": 1.0,
+              "processing_days": 0,
+              "height": 1.0,
+              "length": 1.0,
+              "cls": "IBProductShipping",
+              "weight": 0.01,
+              "deliverable": true
+            },
+            "description": "DETALHES DO PRODUTO\r\n\r\nCamiseta Colcci Clean azul com modelagem reta, decote arredondado e mangas curtas.\r\n\r\nConfeccionado em tecido macio e confortável.\r\n\r\nBusto: 108cm/ Comprimento: 70cm. Tamanho: P. \r\n\r\nMedidas da modelo: Altura 1,79m / Busto 82cm / Cintura 63cm / Quadril 87cm.\r\nINFORMAÇÕES\r\n\r\nSKU\tCO515APF10LAB\r\nModelo\tColcci 360111383\r\nMaterial\tViscose\r\nComposição\t100%viscose\r\nCor\tAzul\r\nLavagem\tLavar a mão",
+            "unit_type": "UNI",
+            "increment_value": 1.0,
+            "brand": "Colcci",
+            "related_items": [
+              
+            ],
+            "images": [
+              "201510240380720919bb50e3e0825b4fd7ba5dc1a05e1c43a1.jpg",
+              "2015102403822347864d5aab1e61694468b1f4c3555edf49c8.jpg"
+            ],
+            "item_type": "product",
+            "subcategory_ids": [
+              "562ad0e4072d41701b289f8f"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "563bcd55072d415f70fcdf30",
+        "title": "Esporte Feminino",
+        "slug": "Esporte-Feminino",
+        "items": [
+          
+        ]
+      },
+      {
+        "id": "5aeb277c94e4290b0178d67d",
+        "title": "Blusas legais",
+        "slug": "Blusas-legais",
+        "items": [
+          {
+            "variation_items": [
+              
+            ],
+            "id": "5c9914488050c003bc9c7e0d",
+            "available_stock": true,
+            "name": "Teste produto lumi",
+            "prices": [
+              {
+                "cls": "IBItemPrice",
+                "id": "971ed4cad03748c7",
+                "title": "default",
+                "internal_code": "35",
+                "bar_codes": [
+                  
+                ],
+                "price": 2.0,
+                "qtd_stock": -1.0
+              }
+            ],
+            "slug": "Teste-produto-lumi",
+            "custom_infos": [
+              
+            ],
+            "min_price_valid": 2.0,
+            "shipping": {
+              "width": 1.0,
+              "processing_days": 0,
+              "height": 1.0,
+              "length": 1.0,
+              "cls": "IBProductShipping",
+              "weight": 0.01,
+              "deliverable": true
+            },
+            "description": "",
+            "unit_type": "UNI",
+            "increment_value": 1.0,
+            "brand": "IB Lumi",
+            "related_items": [
+              
+            ],
+            "images": [
+              "b2c4dd732a0145299fd35424d55431bd.jpeg"
+            ],
+            "item_type": "product",
+            "subcategory_ids": [
+              "5aeb27de94e4290b5378d67d"
+            ],
+            "main_subcategory": "5aeb27de94e4290b5378d67d"
+          },
+          {
+            "variation_items": [
+              
+            ],
+            "id": "5c80125ccf2a20508f12dafc",
+            "available_stock": true,
+            "name": "afsg",
+            "prices": [
+              {
+                "cls": "IBItemPrice",
+                "id": "a81c1dcfb450456a",
+                "title": "default",
+                "internal_code": "sedfsdf",
+                "bar_codes": [
+                  
+                ],
+                "price": 1231.23,
+                "qtd_stock": -1.0
+              }
+            ],
+            "slug": "afsg",
+            "custom_infos": [
+              
+            ],
+            "min_price_valid": 1231.23,
+            "description": "",
+            "related_items": [
+              
+            ],
+            "images": [
+              "6e0bfe20046e4f558dd7e2fdf8721aee.jpeg"
+            ],
+            "item_type": "products_kit",
+            "subcategory_ids": [
+              "5aeb27de94e4290b5378d67d"
+            ],
+            "bundles": [
+              {
+                "max_choice": 1,
+                "products": [
+                  {
+                    "data": "563bd359072d41636efcdf30",
+                    "additional_price": 0.0,
+                    "cls": "IBProductsKitBundleItem"
+                  },
+                  {
+                    "data": "562ad1bc072d417034289f8e",
+                    "additional_price": 0.0,
+                    "cls": "IBProductsKitBundleItem"
+                  },
+                  {
+                    "data": "562ad269072d41703d289f8e",
+                    "additional_price": 0.0,
+                    "cls": "IBProductsKitBundleItem"
+                  },
+                  {
+                    "data": "562ad2b5072d417040289f8e",
+                    "additional_price": 0.0,
+                    "cls": "IBProductsKitBundleItem"
+                  }
+                ],
+                "min_choice": 1,
+                "id": "70c564f75f394363",
+                "name": "hueghf",
+                "raise_products_price": false,
+                "cls": "IBProductsKitBundle"
+              },
+              {
+                "max_choice": 3,
+                "products": [
+                  {
+                    "data": "562ad1bc072d417034289f8e",
+                    "additional_price": 0.0,
+                    "cls": "IBProductsKitBundleItem"
+                  },
+                  {
+                    "data": "562ad269072d41703d289f8e",
+                    "additional_price": 0.0,
+                    "cls": "IBProductsKitBundleItem"
+                  },
+                  {
+                    "data": "562ad2b5072d417040289f8e",
+                    "additional_price": 0.0,
+                    "cls": "IBProductsKitBundleItem"
+                  }
+                ],
+                "min_choice": 1,
+                "id": "fc19a8005f3a4b5d",
+                "name": "teste",
+                "raise_products_price": false,
+                "cls": "IBProductsKitBundle"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "562aceda072d41701c289f8e",
+        "title": "Bolsas e Acessórios",
+        "slug": "Bolsas-e-Acessorios",
+        "items": [
+          {
+            "variation_items": [
+              
+            ],
+            "id": "5cc8a33cc081167efbd6c079",
+            "available_stock": true,
+            "name": "Óleo de Soja SOYA 900ml",
+            "prices": [
+              {
+                "cls": "IBItemPrice",
+                "id": "0bea649353244ef0",
+                "title": "default",
+                "internal_code": "27",
+                "bar_codes": [
+                  
+                ],
+                "price": 10.0,
+                "qtd_stock": -1.0
+              }
+            ],
+            "slug": "Oleo-de-Soja-SOYA-900ml",
+            "custom_infos": [
+              
+            ],
+            "min_price_valid": 10.0,
+            "copy_of": "5cc89f6fbda3a9141a07381b",
+            "shipping": {
+              "width": 1.0,
+              "processing_days": 0,
+              "height": 1.0,
+              "length": 1.0,
+              "cls": "IBProductShipping",
+              "weight": 0.01,
+              "deliverable": true
+            },
+            "description": "Óleo de Soja 900ML Soya.",
+            "unit_type": "UNI",
+            "increment_value": 1.0,
+            "brand": "Soya",
+            "related_items": [
+              
+            ],
+            "images": [
+              "3295e60489164fa28afd3fab94314257.jpg"
+            ],
+            "item_type": "product",
+            "subcategory_ids": [
+              "562adc8e072d41708f289f8e"
+            ]
+          },
+          {
+            "variation_items": [
+              
+            ],
+            "id": "562add09072d417098289f8e",
+            "available_stock": true,
+            "name": "Carteira Macadamia Recorte Branca",
+            "prices": [
+              {
+                "cls": "IBItemPrice",
+                "id": "225bc886e9bc4f1a",
+                "title": "default",
+                "internal_code": "MA318ACF98NGF",
+                "bar_codes": [
+                  
+                ],
+                "price": 99.9,
+                "qtd_stock": -1.0
+              }
+            ],
+            "slug": "Carteira-Macadamia-Recorte-Branca",
+            "custom_infos": [
+              
+            ],
+            "min_price_valid": 99.9,
+            "shipping": {
+              "width": 1.0,
+              "processing_days": 0,
+              "height": 1.0,
+              "length": 1.0,
+              "cls": "IBProductShipping",
+              "weight": 0.01,
+              "deliverable": true
+            },
+            "description": "DETALHES DO PRODUTO\r\n\r\nCarteira Macadamia Recorte branca, confeccionada em material sintético, com recorte em cor contrastante, dez compartimentos internos, sendo um fechado a zíper e fechamento por encaixe. Mede 20x11x3cm (LXAXP). Interior em material sintético.\r\nINFORMAÇÕES\r\n\r\nSKU \tMA318ACF98NGF\r\nModelo\tMacadâmia MCH06005-02E\r\nMaterial Externo\tSintético\r\nMaterial Interno\tSintético\r\nCor\tBranco\r\nAltura\t11cm\r\nLargura\t20cm\r\nProfundidade\t3cm",
+            "unit_type": "UNI",
+            "increment_value": 1.0,
+            "brand": "Macadâmia",
+            "related_items": [
+              
+            ],
+            "images": [
+              "2015102412111709641b29d8692856c495b8803f9aa34fedd20.jpg",
+              "2015102412113432536c6037a675c14e648b997a0d34802d0e.jpg"
+            ],
+            "item_type": "product",
+            "subcategory_ids": [
+              "562adc8e072d41708f289f8e"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "562acde6072d417015289f8f",
+        "title": "Roupas Masculinas",
+        "slug": "Roupas-Masculinas",
+        "items": [
+          {
+            "variation_items": [
+              
+            ],
+            "id": "5c8269818050c003e084fdbd",
+            "available_stock": true,
+            "name": "CAMISETA REGULAR LISTRADA",
+            "prices": [
+              {
+                "cls": "IBItemPrice",
+                "id": "fa0d3d8dac9b4afb",
+                "title": "default",
+                "internal_code": "024789-8",
+                "bar_codes": [
+                  "7892840268244"
+                ],
+                "price": 19.9,
+                "qtd_stock": 2.0
+              },
+              {
+                "cls": "IBItemPrice",
+                "id": "74b56f3158a54c41",
+                "title": "teste",
+                "internal_code": "osdkfdos",
+                "bar_codes": [
+                  "oskfodfk"
+                ],
+                "price": 125.0,
+                "qtd_stock": 0.0
+              }
+            ],
+            "slug": "CAMISETA-REGULAR-LISTRADA",
+            "custom_infos": [
+              
+            ],
+            "min_price_valid": 19.9,
+            "shipping": {
+              "width": 1.0,
+              "processing_days": 0,
+              "height": 1.0,
+              "length": 1.0,
+              "cls": "IBProductShipping",
+              "weight": 0.01,
+              "deliverable": true
+            },
+            "description": "<ul style=\"margin: 10px 0px; padding: 0px; outline: none; list-style: initial; color: rgb(145, 145, 145); font-family: Lato, sans-serif; font-size: 12px; letter-spacing: normal;\"><li style=\"margin: 0px; padding: 0px 0px 0px 15px; outline: none; position: relative; border: 0px; list-style-type: disc !important;\">Camiseta masculina</li><li style=\"margin: 0px; padding: 0px 0px 0px 15px; outline: none; position: relative; border: 0px; list-style-type: disc !important;\">Manga curta</li><li style=\"margin: 0px; padding: 0px 0px 0px 15px; outline: none; position: relative; border: 0px; list-style-type: disc !important;\">Modelo: Regular</li><li style=\"margin: 0px; padding: 0px 0px 0px 15px; outline: none; position: relative; border: 0px; list-style-type: disc !important;\">Gola redonda</li><li style=\"margin: 0px; padding: 0px 0px 0px 15px; outline: none; position: relative; border: 0px; list-style-type: disc !important;\">Listrada</li><li style=\"margin: 0px; padding: 0px 0px 0px 15px; outline: none; position: relative; border: 0px; list-style-type: disc !important;\">Marca: Marfinno</li><li style=\"margin: 0px; padding: 0px 0px 0px 15px; outline: none; position: relative; border: 0px; list-style-type: disc !important;\">Tecido: meia malha</li><li style=\"margin: 0px; padding: 0px 0px 0px 15px; outline: none; position: relative; border: 0px; list-style-type: disc !important;\">Composição: 100% algodão</li></ul><p style=\"margin-top: 10px; margin-bottom: 10px; outline: none; line-height: 18px; color: rgb(145, 145, 145); font-family: Lato, sans-serif; font-size: 12px; letter-spacing: normal;\">&nbsp;</p><p style=\"margin-top: 10px; margin-bottom: 10px; outline: none; line-height: 18px; color: rgb(145, 145, 145); font-family: Lato, sans-serif; font-size: 12px; letter-spacing: normal;\"><span style=\"margin: 0px; padding: 0px; outline: none; font-weight: bolder;\">Medidas do Modelo:</span></p><p style=\"margin-top: 10px; margin-bottom: 10px; outline: none; line-height: 18px; color: rgb(145, 145, 145); font-family: Lato, sans-serif; font-size: 12px; letter-spacing: normal;\">&nbsp;</p><p style=\"margin-top: 10px; margin-bottom: 10px; outline: none; line-height: 18px; color: rgb(145, 145, 145); font-family: Lato, sans-serif; font-size: 12px; letter-spacing: normal;\">Altura; 1,84</p><p style=\"margin-top: 10px; margin-bottom: 10px; outline: none; line-height: 18px; color: rgb(145, 145, 145); font-family: Lato, sans-serif; font-size: 12px; letter-spacing: normal;\">Tórax: 95</p><p style=\"margin-top: 10px; margin-bottom: 10px; outline: none; line-height: 18px; color: rgb(145, 145, 145); font-family: Lato, sans-serif; font-size: 12px; letter-spacing: normal;\">Manequim: 40</p><p style=\"margin-top: 10px; margin-bottom: 10px; outline: none; line-height: 18px; color: rgb(145, 145, 145); font-family: Lato, sans-serif; font-size: 12px; letter-spacing: normal;\">Sapatos: 43</p><p style=\"margin-top: 10px; margin-bottom: 10px; outline: none; line-height: 18px; color: rgb(145, 145, 145); font-family: Lato, sans-serif; font-size: 12px; letter-spacing: normal;\">Terno: 50</p><p style=\"margin-top: 10px; margin-bottom: 10px; outline: none; line-height: 18px; color: rgb(145, 145, 145); font-family: Lato, sans-serif; font-size: 12px; letter-spacing: normal;\">Camisa: 03</p><p style=\"margin-top: 10px; margin-bottom: 10px; outline: none; line-height: 18px; color: rgb(145, 145, 145); font-family: Lato, sans-serif; font-size: 12px; letter-spacing: normal;\">&nbsp;</p><p style=\"margin-top: 10px; margin-bottom: 10px; outline: none; line-height: 18px; color: rgb(145, 145, 145); font-family: Lato, sans-serif; font-size: 12px; letter-spacing: normal;\"><span style=\"margin: 0px; padding: 0px; outline: none; font-weight: bolder;\">COLEÇÃO PRIMAVERA VERÃO 2019</span></p>",
+            "unit_type": "UNI",
+            "increment_value": 1.0,
+            "brand": "Renner",
+            "related_items": [
+              
+            ],
+            "images": [
+              "c4c60ea191aa4e79a1e4e86d2e8b7aff.jpeg",
+              "678575a77eff405a91abbe92366dbf39.jpeg"
+            ],
+            "item_type": "product",
+            "subcategory_ids": [
+              "5c8268518050c003df84f54c"
+            ]
+          },
+          {
+            "variation_items": [
+              "562ad269072d41703d289f8e",
+              "562ad1bc072d417034289f8e"
+            ],
+            "id": "562addf0072d41709b289f8f",
+            "available_stock": true,
+            "name": "Bermuda Sarja Reserva Army Básica",
+            "prices": [
+              {
+                "cls": "IBItemPrice",
+                "id": "200749d4cc814f12",
+                "title": "default",
+                "internal_code": "RE499APM49PRQDB",
+                "bar_codes": [
+                  "7892840268046"
+                ],
+                "price": 90.15,
+                "qtd_stock": -1.0
+              }
+            ],
+            "slug": "Bermuda-Sarja-Reserva-Army-Basica",
+            "custom_infos": [
+              {
+                "value": "39cm",
+                "field": "5b928eb4017ce27d51863aef",
+                "cls": "IBItemCustomInfo"
+              }
+            ],
+            "min_price_valid": 90.15,
+            "shipping": {
+              "width": 1.0,
+              "processing_days": 0,
+              "height": 1.0,
+              "length": 1.0,
+              "cls": "IBProductShipping",
+              "weight": 0.5,
+              "deliverable": true
+            },
+            "description": "DETALHES DO PRODUTO\r\n\r\nBermuda Sarja Reserva Army Básica Verona preta, com quatro bolsos e bordado da marca localizado. Tem modelagem reta, gancho médio e cinco passantes no cós. \r\n\r\nConfeccionada em sarja macia. Fechamento por zíper e botão. Acompanha cinto.\r\n\r\nCintura: 86cm/ Quadril: 104cm/ Gancho: 22cm/ Comprimento: 52cm/ Tamanho: 40. \r\n\r\nMedidas do Modelo: Altura 1,88m / Tórax 94cm / Manequim 40.\r\nINFORMAÇÕES\r\n\r\nSKU \tRE499APM49PRQ\r\nModelo\tReserva 1553\r\nMaterial\tAlgodão\r\nComposição\t100% Algodão\r\nCor\tPreto\r\nLavagem\tPode ser lavado na máquina",
+            "unit_type": "UNI",
+            "increment_value": 1.0,
+            "brand": "Reserva 2",
+            "related_items": [
+              
+            ],
+            "images": [
+              "2015102412525016200d8ac27ff0344a8db2fb3a59faa7d513.jpg",
+              "2015102412539650503f10e3528dbe46bb92826701b088e52d.jpg"
+            ],
+            "attachment": "https://s3-sa-east-1.amazonaws.com/ib.files.general/a809ad71339a4c808696243534350a09.jpg",
+            "item_type": "product",
+            "subcategory_ids": [
+              "562add93072d41709b289f8e",
+              "562ad0e4072d41701b289f8f",
+              "562ad4f5072d417049289f8e"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "status": "success",
+  "count": 0,
+  "http_status": 200
+}
+```
+
+### HTTP Request
+`GET /layout`
+
+
+# Login
+This API allow you to login user.
+
+> JSON response example:
+
+```json
+{  
+   "data":{  
+      "first_name":"Cayke",
+      "id":"56d1d826072d4127fb6fb9f9",
+      "addresses":[],
+      "last_name":"Prudente",
+      "cpf":"034.123.765-14",
+      "birthday":"1990-04-21T12:00:00+00:00",
+      "user_type":"PF",
+      "phone":"(61)99999-3871",
+      "email":"cayke@gmail.com",
+      "gender":"M",
+      "cards":[]
+   },
+   "status":"success",
+   "count":0,
+   "http_status":200
+}
+```
+
+### HTTP Request
+`POST /login`
+
+#### Available parameters
+Parameter | Type | Constraint | Description
+-------------- | --------------  | -------------- | -------------- 
+`email` | string | required | User email.
+`password` | string | required | User password.
+
+
+# Logout
+This API allow you to logout user.
+
+> JSON response example:
+
+```json
+{  
+   "data":"ok",
+   "status":"success",
+   "count":0,
+   "http_status":200
+}
+```
+
+### HTTP Request
+`DELETE /logout`
+
 
 # Menu
 This API allow you to get the store categories menu.
@@ -1415,6 +3153,30 @@ This API helps you to view all the categories and subcategories.
 
 ### HTTP Request
 `GET /menu`
+
+
+# Newsletter
+This API allows you to register email in newsletter.
+
+> JSON response example:
+
+```json
+{  
+   "data":"ok",
+   "status":"success",
+   "count":0,
+   "http_status":200
+}
+```
+
+### HTTP Request
+`POST /newsletter`
+
+#### Available parameters
+Parameter | Type | Constraint | Description
+-------------- | --------------  | -------------- | -------------- 
+`email` | string | required | Client email.
+
 
 # Search
 The items API allows you to list items(products and products kits) based on a search text that will consider items name and description or a search by barcode.
@@ -1591,8 +3353,594 @@ Parameter | Type | Description
 `search_code` | string | Search for item that contains barcode or PLU equal `search_code`.
 
 
+# Store
+This API allows you to get store info.
+
+## Store properties
+
+Attribute | Type | Description
+-------------- | -------------- | -------------- 
+`id` | string |	Unique identifier for the resource.
+`subdomain`| string | Store subdomain
+`custom_domain` | string | Store custom domain.
+`address` | object | Store address. See [Address](#address).
+`reviews_count` | integer | Number of buys reviewed.
+`delivery_time` | integer | Total note for delivery_time. Split with `reviews_count` to get average.
+`practicality` | integer | Total note for practicality. Split with `reviews_count` to get average.
+`practicality` | integer | Total note for practicality. Split with `reviews_count` to get average.
+`average_review` | float | Average review note.
+`spatial_position` | object | Store spatial position.
+`opening_hours` | object | Store functioning hours. See [Opening Hour](#store-opening-hour-properties).
+`phone` | string | Store contact phone.
+`make_collect` | boolean | If client can fetch the order in the physical store.
+`slogan` | string | Store slogan.
+`favicon`| string | Browser favicon image key.
+`social_links` | object | Store social links. See [Social Links](#store-social-links-properties).
+`make_delivery` | boolean | If store deliveries buys to client house.
+`description` | string | Store description text.
+`accepted_pos_cards` | array | List with POS cards accepted. See [POS Card](#store-pos-card-properties).
+`logo` | string | Store logo image key.
+`schedules_buys` | boolean | If user should schedule buy receiptment.
+`money_payment` | boolean | If Store accepts cash payment.
+`background_image` | string | Store header background image key.
+`name` | string | Store name.
+`receipt_from` | string | If store doesnt schedules buy, this is the average time to receive the buy.
+`make_correios` | boolean | If store send buys to user with Correios.
+`min_price_to_finish` | float | Minimum buy subtotal to make a buy.
+`pos_payment` | boolean | If store accepts physical credit/debit/vale payment.
+`check_payment` | boolean | If stores accepts check payment.
+`deposit_payment` | boolean | If Store accepts bank deposit payment.
+`pagar_me_credit_card_payment` | boolean | If Store accepts credit payment using Pagar.me gateway.
+`pagar_me_billet_payment` | boolean | If store accepts billet payment using Pagar.me gateway.
+`cielo_debit_card_payment` | boolean | If Store accepts debit payment using Cielo gateway.
+`cielo_credit_card_payment` | boolean | If Store accepts credit payment using Cielo gateway.
+`billet_percent_discount` | float | Discount that should be applied to buy subtotal if billet payment.
+`installments` | array | List of Installments accepted. See [Installment](#store-installment-properties).
+
+## Store - Opening Hour properties
+Attribute | Type | Description
+-------------- | -------------- | -------------- 
+`weekday` | string |	Weekday.
+`closed_all_day` | boolean | If store doesnt open this weekday.
+`open_all_day` | boolean | If store is open 24h this weekday.
+`open_at` | string | Hour that store opens in this weekday, if not 24 and not closed.
+`close_at` | string | Hour that store closes in this weekday, if not 24 and not closed.
+
+## Store - Installment properties
+Note that Installment is applied only to credit payment(either online or POS).
+
+Attribute | Type | Description
+-------------- | -------------- | -------------- 
+`installments_number` | integer |	How many times the payment should be split.
+`interest` | float | Interest applied (% per month).
+`buy_min_value` | float | Minimum buy value to apply this installment rule.
+
+## Store - Social Links properties
+Attribute | Type | Description
+-------------- | -------------- | -------------- 
+`twitter` | string |	Store Twitter URL.
+`facebook` | string |	Store Facebook URL.
+`instagram` | string |	Store Instagram URL.
+`whatsapp` | string |	Store Whatsapp phone number.
+
+## Store - POS Card properties
+Attribute | Type | Description
+-------------- | -------------- | -------------- 
+`is_credit` | string |	If accepts credit with this card flag.
+`is_debit` | string |	If accepts debit with this card flag.
+`is_vale` | string |	If accepts vale with this card flag.
+`card_data.id` | string |	Unique identifier for the resource.
+`card_data.image` | string |	Card flag image key.
+`card_data.flag` | string |	Card flag.
+
+
+## Retrieve store
+Retrieve store infos.
+
+> JSON response example:
+
+```json
+{
+  "data": {
+    "reviews_count": 1,
+    "address": {
+      "zipcode": "70278-020",
+      "street": "Quadra SQS 412 Bloco B",
+      "street_number": "huezin",
+      "complement": "",
+      "city": "Brasília",
+      "neighborhood": "Asa Sul",
+      "state": "DF"
+    },
+    "delivery_time": 5,
+    "spatial_position": {
+      "type": "Point",
+      "coordinates": [
+        -47.8731722249,
+        -15.7770631343
+      ]
+    },
+    "fast_buy": false,
+    "pagarme_billet_payment": true,
+    "opening_hours": [
+      {
+        "closed_all_day": false,
+        "close_at": "17:00",
+        "open_at": "10:00",
+        "weekday": "monday",
+        "open_all_day": false
+      },
+      {
+        "closed_all_day": true,
+        "close_at": "17:00",
+        "open_at": "10:00",
+        "weekday": "tuesday",
+        "open_all_day": false
+      },
+      {
+        "closed_all_day": true,
+        "close_at": "17:00",
+        "open_at": "10:00",
+        "weekday": "friday",
+        "open_all_day": false
+      },
+      {
+        "closed_all_day": true,
+        "close_at": "21:00",
+        "open_at": "08:00",
+        "weekday": "wednesday",
+        "open_all_day": false
+      },
+      {
+        "closed_all_day": false,
+        "close_at": "21:00",
+        "open_at": "08:00",
+        "weekday": "thursday",
+        "open_all_day": true
+      },
+      {
+        "closed_all_day": true,
+        "close_at": "",
+        "open_at": "",
+        "weekday": "sunday",
+        "open_all_day": false
+      },
+      {
+        "closed_all_day": true,
+        "close_at": "",
+        "open_at": "",
+        "weekday": "saturday",
+        "open_all_day": false
+      }
+    ],
+    "services": [
+      "55becfc81080907415e9c3ff"
+    ],
+    "practicality": 5,
+    "phone": "(61) 99161-3871",
+    "average_review": 4,
+    "id": "55c17d73072d4126ea180fe5",
+    "pos_payment": true,
+    "make_collect": true,
+    "slogan": "Faça a sua moda!",
+    "favicon": "53f4223c238c4b43a7731672ff43cc6c.jpeg",
+    "check_payment": true,
+    "installments": [
+      {
+        "installments_number": 3,
+        "interest": 0.0,
+        "buy_min_value": 0.0
+      },
+      {
+        "installments_number": 4,
+        "interest": 0.0,
+        "buy_min_value": 100.0
+      },
+      {
+        "installments_number": 7,
+        "interest": 10.0,
+        "buy_min_value": 60.0
+      }
+    ],
+    "billet_percent_discount": 5.0,
+    "social_links": {
+      "twitter": "http://twitter.com",
+      "google_plus": "huebr",
+      "facebook": "https://www.facebook.com/instabuy",
+      "instagram": "https://www.instagram.com/instabuy_brasil/",
+      "whatsapp": "61999999999"
+    },
+    "make_delivery": true,
+    "description": "Ultimas tendencias da moda masculina e feminina.",
+    "deposit_payment": false,
+    "items_quality": 3,
+    "accepted_pos_cards": [
+      {
+        "is_credit": true,
+        "card_data": {
+          "image": "mastercard.png",
+          "id": "5b5e733c017ce2a4dff1b1ea",
+          "flag": "MasterCard"
+        },
+        "is_debit": true,
+        "is_vale": false
+      },
+      {
+        "is_credit": true,
+        "card_data": {
+          "image": "visa.png",
+          "id": "5b5e733b017ce2a4dff1b1e9",
+          "flag": "Visa"
+        },
+        "is_debit": true,
+        "is_vale": false
+      },
+      {
+        "is_credit": true,
+        "card_data": {
+          "image": "elo.png",
+          "id": "5b5e733c017ce2a4dff1b1ec",
+          "flag": "Elo"
+        },
+        "is_debit": true,
+        "is_vale": false
+      }
+    ],
+    "logo": "830a066682c14b669332fc62630643cd.jpeg",
+    "cielo_debit_card_payment": false,
+    "subdomain": "caykestore",
+    "schedules_buys": true,
+    "money_payment": true,
+    "background_image": "201703132154372425607186760145844a4c84fe25abe4260db1.jpg",
+    "name": "Vitrini Store",
+    "schedule_days": [
+      {
+        "weekday": "sunday",
+        "hours": [
+          {
+            "setup_time": 60,
+            "id": "dbc81",
+            "end_time": "12:00",
+            "start_time": "08:00"
+          },
+          {
+            "setup_time": 20,
+            "id": "39613",
+            "end_time": "19:00",
+            "start_time": "05:00"
+          },
+          {
+            "setup_time": 45,
+            "id": "ayOtf2Tc",
+            "end_time": "18:00",
+            "start_time": "06:00"
+          },
+          {
+            "setup_time": 0,
+            "id": "3tI45sjE",
+            "end_time": "18:00",
+            "start_time": "14:00"
+          }
+        ]
+      },
+      {
+        "weekday": "monday",
+        "hours": [
+          {
+            "setup_time": 10,
+            "id": "aa24e",
+            "end_time": "13:00",
+            "start_time": "07:00"
+          },
+          {
+            "setup_time": 10,
+            "id": "0232d",
+            "end_time": "18:00",
+            "start_time": "14:00"
+          },
+          {
+            "setup_time": 90,
+            "id": "TnRVf9Od",
+            "end_time": "15:00",
+            "start_time": "13:30"
+          },
+          {
+            "setup_time": 240,
+            "id": "ytt9u6vs",
+            "end_time": "11:00",
+            "start_time": "06:00"
+          }
+        ]
+      },
+      {
+        "weekday": "tuesday",
+        "hours": [
+          {
+            "setup_time": 10,
+            "id": "c88ed",
+            "end_time": "17:30",
+            "start_time": "13:00"
+          }
+        ]
+      },
+      {
+        "weekday": "wednesday",
+        "hours": [
+          {
+            "setup_time": 10,
+            "id": "57dbc",
+            "end_time": "11:00",
+            "start_time": "09:30"
+          },
+          {
+            "setup_time": 10,
+            "id": "ac410",
+            "end_time": "20:30",
+            "start_time": "14:00"
+          }
+        ]
+      },
+      {
+        "weekday": "thursday",
+        "hours": [
+          {
+            "setup_time": 10,
+            "id": "a596c",
+            "end_time": "08:00",
+            "start_time": "06:00"
+          },
+          {
+            "setup_time": 10,
+            "id": "d479d",
+            "end_time": "13:00",
+            "start_time": "09:30"
+          },
+          {
+            "setup_time": 10,
+            "id": "81701",
+            "end_time": "21:00",
+            "start_time": "16:00"
+          }
+        ]
+      },
+      {
+        "weekday": "friday",
+        "hours": [
+          {
+            "setup_time": 10,
+            "id": "851fe",
+            "end_time": "15:30",
+            "start_time": "08:00"
+          },
+          {
+            "setup_time": 10,
+            "id": "5361b",
+            "end_time": "20:00",
+            "start_time": "17:00"
+          }
+        ]
+      },
+      {
+        "weekday": "saturday",
+        "hours": [
+          {
+            "setup_time": 10,
+            "id": "771ee",
+            "end_time": "13:30",
+            "start_time": "10:00"
+          }
+        ]
+      }
+    ],
+    "cielo_credit_card_payment": false,
+    "receipt_from": "50min - 1h10min",
+    "make_correios": false,
+    "min_price_to_finish": 4.0,
+    "pagarme_credit_card_payment": true
+  },
+  "status": "success",
+  "count": 1,
+  "http_status": 200
+}
+```
+
+### HTTP Request
+`GET /store`
+
+
+# User
+This API allows you to create, edit and get users.
+
+## User properties
+Attribute | Type | Description
+-------------- | -------------- | -------------- 
+`id` | string |	Unique identifier for the resource.
+`email` | string | User email.
+`phone` | string | User phone.
+`user_type` | string | User type. If `PF` see [UserPF](#userpf-properties), if `PJ` see [UserPJ](#userpj-properties).
+`cards` | array | List of credit cards. See [Card](#card-properties).
+`addresses` | array | List of addresses | See [Address](#address-properties).
+
+## UserPF properties
+All UserPF inherit from User.
+
+Attribute | Type | Description
+-------------- | -------------- | -------------- 
+`gender` | string | User gender. Either `F` or `M`.
+`first_name` | string | User first name.
+`last_name` | string | User last name.
+`birthday` | datetime | User birthday.
+`cpf` | string | User CPF.
+
+## UserPJ properties
+All UserPJ inherit from User.
+
+Attribute | Type | Description
+-------------- | -------------- | -------------- 
+`company_name` | string | User company name.
+`fantasy_name` | string | User fantasy name.
+`cnpj` | string | User CNPJ.
+
+## Retrieve User
+This API allows you to get the logged user.
+
+> JSON response example:
+
+```json
+{  
+   "data":{  
+      "first_name":"Cayke",
+      "id":"56d1d826072d4127fb6fb9f9",
+      "addresses":[],
+      "last_name":"Prudente",
+      "cpf":"034.123.765-14",
+      "birthday":"1990-04-21T12:00:00+00:00",
+      "user_type":"PF",
+      "phone":"(61)99999-3871",
+      "email":"cayke@gmail.com",
+      "gender":"M",
+      "cards":[]
+   },
+   "status":"success",
+   "count":0,
+   "http_status":200
+}
+```
+
+### HTTP Request
+`GET /user`
+
+## Create User
+This API allows you to create new User.
+
+```json
+{  
+   "data":{  
+      "first_name":"Cayke",
+      "id":"56d1d826072d4127fb6fb9f9",
+      "addresses":[],
+      "last_name":"Prudente",
+      "cpf":"034.123.765-14",
+      "birthday":"1990-04-21T12:00:00+00:00",
+      "user_type":"PF",
+      "phone":"(61)99999-3871",
+      "email":"cayke@gmail.com",
+      "gender":"M",
+      "cards":[]
+   },
+   "status":"success",
+   "count":0,
+   "http_status":200
+}
+```
+
+### HTTP Request
+`POST /user`
+
+#### Available parameters
+Parameter | Type | Constraint | Description
+-------------- | --------------  | -------------- | -------------- 
+`email` | string | required | User email.
+`password` | string | required | User password.
+`phone` | string | required | User phone.
+`first_name` | string | required for PF | User first name.
+`last_name` | string | required for PF | User last name.
+`gender` | string | required for PF | User gender. `F` or `M`.
+`birthday` | string | required for PF | User birthday. `DD/MM/YYYY` format.
+`cpf` | string | required for PF | User CPF.
+`company_name` | string | required for PJ | User company name.
+`fantasy_name` | string | required for PJ | User fantasy name.
+`cnpj` | string | required for PJ | User CNPJ.
+
+## Edi User
+This API allows you to edit User info.
+
+```json
+{  
+   "data":{  
+      "first_name":"Cayke",
+      "id":"56d1d826072d4127fb6fb9f9",
+      "addresses":[],
+      "last_name":"Prudente",
+      "cpf":"034.123.765-14",
+      "birthday":"1990-04-21T12:00:00+00:00",
+      "user_type":"PF",
+      "phone":"(61)99999-3871",
+      "email":"cayke@gmail.com",
+      "gender":"M",
+      "cards":[]
+   },
+   "status":"success",
+   "count":0,
+   "http_status":200
+}
+```
+
+### HTTP Request
+`PUT /user`
+
+#### Available parameters
+Parameter | Type | Constraint | Description
+-------------- | --------------  | -------------- | -------------- 
+`phone` | string | required | User phone.
+`first_name` | string | required for PF | User first name.
+`last_name` | string | required for PF | User last name.
+`gender` | string | required for PF | User gender. `F` or `M`.
+`birthday` | string | required for PF | User birthday. `DD/MM/YYYY` format.
+`cpf` | string | required for PF | User CPF.
+`company_name` | string | required for PJ | User company name.
+`fantasy_name` | string | required for PJ | User fantasy name.
+`cnpj` | string | required for PJ | User CNPJ.
+
 # User Password
 This API allows you to change user password with different methods.
+
+## Change with actual password
+This API replaces the logged user password if password matches to actual password.
+
+> JSON response example:
+
+```json
+{  
+   "data":"ok",
+   "status":"success",
+   "count":0,
+   "http_status":200
+}
+``` 
+
+### HTTP Request
+`PUT /user`
+
+#### Available parameters
+Parameter | Type | Constraint | Description
+-------------- | --------------  | -------------- | -------------- 
+`password` | string | required | User actual password.
+`new_password` | string | required | User new password.
+
+## Generate Token 
+This API generates token and send it to user email.
+
+> JSON response example:
+
+```json
+{  
+   "data":"ok",
+   "status":"success",
+   "count":0,
+   "http_status":200
+}
+``` 
+
+### HTTP Request
+`POST /forgotpassword`
+
+#### Available parameters
+Parameter | Type | Constraint | Description
+-------------- | --------------  | -------------- | -------------- 
+`email` | string | required | User email.
+`landing_domain` | string | required | To what URL the email sent to user should redirect. The token will be append in the end of this URL.
+
 
 ## Change Password with Token
 Changes User password using Token send to email.
@@ -1600,7 +3948,6 @@ Changes User password using Token send to email.
 > JSON response example:
 
 ```json
-
 {  
    "data":"ok",
    "status":"success",
