@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: Instabuy Client API Doc
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - json
@@ -21,6 +21,10 @@ search: true
 # Introduction
 
 Welcome to Instabuy's **REST** Client API. This API allows you to provide functions and data to your e-commerce website/app, like products, categories, carts, buys, etc.
+
+To check other docs, click above:
+
+- [Linear Sistemas Doc](/linear.html).
 
 ## URLs
 
