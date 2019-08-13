@@ -253,6 +253,7 @@ Attribute | Type | Description
 `user` | object | If `PF` see [UserPF](#userpf-properties), if `PJ` see [UserPJ](#userpj-properties).
 `raffle` | object | See [Raffle](#raffle-properties).
 `coupons` | array | List with Coupons. See [Coupon](#coupon-properties).
+`pending_coupons` | array | List with Pending Coupons. See [Pending Coupon](#pending-coupon-properties).
 
 ## Raffle properties
 Attribute | Type | Description
@@ -277,6 +278,14 @@ Attribute | Type | Description
 Attribute | Type | Description
 -------------- | -------------- | -------------- 
 `number` | int | Unique Sortable Number.
+`created_at` | date | Coupon creation date(processed date).
+`buy_date` | date | Buy Invoice date.
+
+## Pending Coupon properties
+Attribute | Type | Description
+-------------- | -------------- | -------------- 
+`invoice_url` | string | Invoice url.
+`access_key` | string | Invoice access key.
 
 
 ## Retrieve Coupons
@@ -295,35 +304,8 @@ http://localhost:8000/dmcard/coupon \
 ```json
 {
     "data": {
-        "created_at": "2019-07-15T22:54:01.312000+00:00",
-        "id": "5d2d0409d80046882f351264",
-        "coupons": [
-            {
-                "balance": 25.6,
-                "store": {
-                    "created_at": "2019-07-15T22:15:02.024000+00:00",
-                    "id": "5d2cfae6584eb1bd02a38a7c",
-                    "name": "BigBox 402 norte"
-                },
-                "sortable_numbers": [
-                    {
-                        "number": 668948
-                    },
-                    {
-                        "number": 675747
-                    },
-                    {
-                        "number": 877251
-                    }
-                ]
-            }
-        ],
-        "pending_coupons": [],
         "raffle": {
             "created_at": "2019-07-15T22:15:01.960000+00:00",
-            "start_date": "2019-07-15T00:00:00+00:00",
-            "id": "5d2cfae5584eb1bd02a38a7b",
-            "end_date": "2019-10-15T23:59:59+00:00",
             "stores": [
                 {
                     "created_at": "2019-07-15T22:15:02.024000+00:00",
@@ -331,12 +313,45 @@ http://localhost:8000/dmcard/coupon \
                     "name": "BigBox 402 norte"
                 }
             ],
+            "start_date": "2019-01-15T00:00:00+00:00",
             "rule": {
-                "buy_value": 100.0,
-                "coupons_won": 1
+                "coupons_won": 1,
+                "buy_value": 20.0
             },
-            "name": "Sorteio aniversário UltraBox\/BigBox"
-        }
+            "end_date": "2019-10-15T23:59:59+00:00",
+            "id": "5d2cfae5584eb1bd02a38a7b",
+            "name": "Sorteio teste aniversário UltraBox\/BigBox"
+        },
+        "created_at": "2019-07-22T20:20:41.492000+00:00",
+        "id": "5d361a995ce78324a6e53a6b",
+        "pending_coupons": [],
+        "coupons": [
+            {
+                "sortable_numbers": [
+                    {
+                        "created_at": "2019-07-22T22:17:47.779000+00:00",
+                        "buy_date": "2019-03-29T17:58:00+00:00",
+                        "number": 584900
+                    },
+                    {
+                        "created_at": "2019-07-22T22:17:47.781000+00:00",
+                        "buy_date": "2019-03-29T17:58:00+00:00",
+                        "number": 728469
+                    },
+                    {
+                        "created_at": "2019-07-22T22:17:47.782000+00:00",
+                        "buy_date": "2019-03-29T17:58:00+00:00",
+                        "number": 906266
+                    }
+                ],
+                "store": {
+                    "created_at": "2019-07-15T22:15:02.024000+00:00",
+                    "id": "5d2cfae6584eb1bd02a38a7c",
+                    "name": "BigBox 402 norte"
+                },
+                "balance": 2.8
+            }
+        ]
     },
     "status": "success",
     "count": 0,
@@ -372,51 +387,31 @@ curl -X POST \
 {
     "data": {
         "raffle": {
+            "end_date": "2019-10-15T23:59:59+00:00",
+            "start_date": "2019-07-15T00:00:00+00:00",
+            "name": "Sorteio teste aniversário UltraBox\/BigBox",
+            "rule": {
+                "buy_value": 20.0,
+                "coupons_won": 1
+            },
+            "id": "5d2cfae5584eb1bd02a38a7b",
+            "created_at": "2019-07-15T22:15:01.960000+00:00",
             "stores": [
                 {
-                    "created_at": "2019-07-15T22:15:02.024000+00:00",
                     "name": "BigBox 402 norte",
-                    "id": "5d2cfae6584eb1bd02a38a7c"
+                    "id": "5d2cfae6584eb1bd02a38a7c",
+                    "created_at": "2019-07-15T22:15:02.024000+00:00"
                 }
-            ],
-            "rule": {
-                "coupons_won": 1,
-                "buy_value": 100.0
-            },
-            "start_date": "2019-07-15T00:00:00+00:00",
-            "created_at": "2019-07-15T22:15:01.960000+00:00",
-            "name": "Sorteio aniversário UltraBox\/BigBox",
-            "id": "5d2cfae5584eb1bd02a38a7b",
-            "end_date": "2019-10-15T23:59:59+00:00"
+            ]
         },
-        "created_at": "2019-07-15T22:54:01.312000+00:00",
-        "coupons": [
-            {
-                "balance": 25.6,
-                "sortable_numbers": [
-                    {
-                        "number": 668948
-                    },
-                    {
-                        "number": 675747
-                    },
-                    {
-                        "number": 877251
-                    }
-                ],
-                "store": {
-                    "created_at": "2019-07-15T22:15:02.024000+00:00",
-                    "name": "BigBox 402 norte",
-                    "id": "5d2cfae6584eb1bd02a38a7c"
-                }
-            }
-        ],
         "pending_coupons": [
             {
                 "invoice_url": "http:\/\/dec.fazenda.df.gov.br\/consultarnfce.aspx?p=53190303696869000100650180000041399200839898|2|1|29|62.80|5849452b57487a7134375552654f435345746c58642f642f4f554d3d|1|befb4da9f122c65b4695bba0f3c514d83425892f"
             }
         ],
-        "id": "5d2d0409d80046882f351264"
+        "coupons": [],
+        "id": "5d361a995ce78324a6e53a6b",
+        "created_at": "2019-07-22T20:20:41.492000+00:00"
     },
     "status": "success",
     "count": 0,
@@ -432,4 +427,7 @@ Parameter | Type | Constraint | Description
 -------------- | --------------  | -------------- | -------------- 
 `user_id` | string | required | User Id.
 `raffle_id` | string | required | Raffle Id.
-`invoice_url` | string | required | Invoice url. The link read on invoice QR Code.
+`invoice_url` | string | optional | Invoice url. The link read on invoice QR Code.
+`access_key` | string | optional | Invoice access key.
+
+You must pass `invoice_url` or `access_key`.
