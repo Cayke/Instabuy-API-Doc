@@ -26,6 +26,7 @@ To check other docs, click above:
 
 - [Linear Sistemas Doc](/linear.html).
 - [DMCard Doc](/dmcard.html).
+- [Tetra Soluções Doc](/tetra.html).
 
 ## URLs
 
