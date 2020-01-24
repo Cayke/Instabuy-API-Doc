@@ -263,6 +263,35 @@ Attribute | Type | Description
 `qtd` | float | Product quantity.
 `name` | string | Product name.
 
+## Buy Status properties
+Status | Description
+-------------- | -------------- | --------------
+`ib_wait_auth`        | compra esperando autorizacao do lojista
+`ib_confirmed`        | compra foi confirmada pela loja
+`ib_canceled`         | compra foi cancelada
+`ib_fraud_suspect`    | compra está com suspeita de fraude
+`ib_store_processing` | compra está sendo processada pela loja
+`ib_ready`            | compra está pronta, produtos ja foram reparados
+`ib_invoice_issued`   | nota/cupom fiscal emitida
+`ib_on_the_way`       | compra está há caminho do usuário
+`ib_waiting_client`   | compra está esperando o cliente
+`ib_paid` 			  |  compra paga diretamente ao lojista
+`ib_trial`            | assinatura está em trial
+`ib_closed`           | compra foi finalizada. OBS: compra precisa passar por `ib_paid` ou `pm_paid` para poder ser finalizada.
+`pm_expired`          | assinatura passou da data de pagamento e nao houve pagamento efetuado
+`pm_processing`       | transação sendo processada.
+`pm_authorized`       | transação autorizada. Cliente possui saldo na conta e este valor foi reservado para futura captura, que deve 						acontecer em no máximo 5 dias. Caso a transação não seja capturada, a autorização é cancelada automaticamente.
+`pm_paid`             | transação paga (autorizada e capturada).
+`pm_refunded`         | transação estornada.
+`pm_waiting_payment`  | transação aguardando pagamento (status para transações criadas com boleto bancário).
+`pm_pending_refund`   | transação paga com boleto aguardando para ser estornada.
+`pm_refused`          | transação não autorizada.
+`pm_chargedback`      | transação sofreu chargeback.
+`pm_canceled`         | transação cancelada.
+`cs_approved`         | transacao liberada pela clearsale
+`cs_reproved`         | transacao reprovada pela clearsale
+`cs_waiting`          | aguardando analise da clearsale
+
 ## Retrieve Buys
 This API allows you to get buys.
 
@@ -364,6 +393,267 @@ curl -X GET \
 ### HTTP Request
 `GET /orders-pending/cnpj/<store-cnpj>`
 
+## Retrieve especific buy
+This API allows you to get a buy with Id.
+
+```shell
+curl -X GET \
+  http://localhost:8000/api_tetra/order/cnpj/23406149000170/order_id/5e0a35bf25d2b20f17e93276 \
+  -H 'api-token: 18aaab24-581b-4e1d-9a44-e876cb4cea22' \
+```
+
+> JSON response example:
+
+```json
+{
+    "data": {
+        "online_payment_transaction_info": {},
+        "last_modified": "2019-12-30T18:06:15.638000+00:00",
+        "status": "ib_invoice_issued",
+        "client_ip": "181.221.64.40",
+        "status_history": [
+            {
+                "created_at": "2019-12-30T17:38:02.164000+00:00",
+                "message": "Alteração de status: Esperando Autorização -> Produtos separados",
+                "new_status": "ib_ready",
+                "author": "correasanderson@gmail.com",
+                "old_status": "ib_wait_auth"
+            },
+            {
+                "created_at": "2019-12-30T18:06:15.634000+00:00",
+                "message": "Alteração de status: Produtos separados -> Nota fiscal emitida",
+                "new_status": "ib_invoice_issued",
+                "author": "tetra",
+                "old_status": "ib_ready"
+            }
+        ],
+        "client": {	
+            "last_modified": "2019-12-30T17:36:21.972000+00:00",
+            "email": "flusanderson@gmail.com",
+            "card_errors_count": 0,
+            "gender": "M",
+            "birthday": "1995-05-18T12:00:00+00:00",
+            "first_name": "Sanderson",
+            "cpf": "149.797.597-26",
+            "phone": "(22) 99977-6131",
+            "created_at": "2019-12-30T13:07:29.710000+00:00",
+            "last_name": "Corrêa",
+            "id": "5e09f6913b68981ab725e86b",
+            "user_type": "PF"
+        },
+        "should_replace_missing_products": false,
+        "creator": "unknown",
+        "platform": "ib_web",
+        "payment_info": {
+            "value": "MasterCard",
+            "method": "credit"
+        },
+        "device": "Unknown;Windows;Chrome",
+        "created_at": "2019-12-30T17:37:03.670000+00:00",
+        "store_id": "5dfccf3c3006aa81b4f242e2",
+        "id": "5e0a35bf25d2b20f17e93276",
+        "kits": [],
+        "comment": "Trazer canudos",
+        "buy_type": "deli",
+        "seen": true,
+        "delivery_info": {
+            "zipcode": "28085-210",
+            "country": "Brasil",
+            "complement": "Casa - Rua do Arantes",
+            "street": "Rua Atanagildo de Freitas",
+            "neighborhood": "Parque Bandeirantes",
+            "street_number": "117",
+            "city": "Campos dos Goytacazes",
+            "state": "RJ"
+        },
+        "billet_percent_discount": 0.0,
+        "products": [
+            {
+                "model_title": "Garrada",
+                "name": "Coca-Cola 600ml",
+                "image": "b6deccb4a9ae466a8714189ec7926589.jpeg",
+                "price": 29.0,
+                "qtd": 5.0,
+                "bar_codes": [
+                    "1234"
+                ],
+                "model_internal_code": "4321",
+                "subcategory": "5dfcd8822555d82f215df2a1",
+                "model_id": "8dc2cfa17b4943a7",
+                "attachment": "Gelada",
+                "id": "5dfd296ccb07f97d176bda23",
+                "unit_type": "UNI"
+            }
+        ],
+        "delivery_tax": 10.0,
+        "delivery_hour": {
+            "end_time": "18:00",
+            "start_time": "14:00",
+            "id": "tv27e2aD",
+            "delivery_date": "2019-12-31T14:00:00+00:00"
+        },
+        "schedule": true,
+        "code": "7C4X-Y3G8",
+        "subtotal": 145.0,
+        "discount": 0.0,
+        "total": 155.0
+    },
+    "status": "success",
+    "count": 1,
+    "http_status": 200
+}
+```
+
+### HTTP Request
+`GET /order/cnpj/<store-cnpj>/order_id/<order-id>`
+
+## Edit Buy Status
+This API allows you to edit a buy status.
+
+```shell
+curl --location --request PUT 'localhost:8000/api_tetra/order/cnpj/12048636000192/order_id/5e2ae114cc97ec5dbd1855d3?status=ib_closed' \
+--header 'api-token: 18aaab24-581b-4e1d-9a44-e876cb4cea22'
+```
+
+> JSON response example:
+
+```json
+{
+    "data": {
+        "id": "5e2ae114cc97ec5dbd1855d3",
+        "status_history": [
+            {
+                "created_at": "2020-01-24T12:22:17.167000+00:00",
+                "author": "correasanderson@gmail.com",
+                "new_status": "ib_ready",
+                "old_status": "ib_wait_auth",
+                "message": "Alteração de status: Esperando Autorização -> Produtos separados"
+            },
+            {
+                "created_at": "2020-01-24T12:22:43.114000+00:00",
+                "author": "tetra",
+                "new_status": "ib_invoice_issued",
+                "old_status": "ib_ready",
+                "message": "Alteração de status: Produtos separados -> Nota fiscal emitida"
+            },
+            {
+                "created_at": "2020-01-24T18:45:35.254000+00:00",
+                "author": "tetra",
+                "new_status": "ib_paid",
+                "old_status": "ib_invoice_issued",
+                "message": "Alteração de status: Nota fiscal emitida -> Pago ao lojista"
+            },
+            {
+                "created_at": "2020-01-24T18:45:47.465000+00:00",
+                "author": "tetra",
+                "new_status": "ib_closed",
+                "old_status": "ib_paid",
+                "message": "Alteração de status: Pago ao lojista -> Finalizado"
+            }
+        ],
+        "billet_percent_discount": 0.0,
+        "payment_info": {
+            "method": "credit",
+            "value": "Visa"
+        },
+        "creator": "unknown",
+        "online_payment_transaction_info": {},
+        "buy_type": "deli",
+        "client": {
+            "id": "5e09f6913b68981ab725e86b",
+            "first_name": "Sanderson",
+            "phone": "(22) 99977-6131",
+            "created_at": "2019-12-30T13:07:29.710000+00:00",
+            "gender": "M",
+            "birthday": "1995-05-18T12:00:00+00:00",
+            "last_modified": "2019-12-30T17:36:21.972000+00:00",
+            "card_errors_count": 0,
+            "user_type": "PF",
+            "email": "flusanderson@gmail.com",
+            "last_name": "Corrêa",
+            "cpf": "149.797.597-26"
+        },
+        "client_ip": "181.221.64.40",
+        "products": [
+            {
+                "price": 12.5,
+                "name": "Extrato De Propolis Marrom 35Ml",
+                "model_title": "default",
+                "model_id": "172b3e69d85c4906",
+                "id": "5e13874f198868e13148ff9f",
+                "qtd": 3.0,
+                "image": "858c185360de492eaea216bec89f4906.jpeg",
+                "subcategory": "5dfcd9adad5cd6c85f4ba5fd",
+                "unit_type": "UNI",
+                "bar_codes": [
+                    "7896396002826",
+                    "7896396030287"
+                ],
+                "model_internal_code": "744"
+            },
+            {
+                "price": 29.9,
+                "name": "Mel Laranjeira Minamel 500G",
+                "model_title": "default",
+                "model_id": "7c894b751cbd44b4",
+                "id": "5e2adfd0cc97ec5dbd185582",
+                "qtd": 1.0,
+                "image": "add75fd80d124e99aa973211c92edf9d.jpeg",
+                "subcategory": "5dfcd9adad5cd6c85f4ba5fd",
+                "unit_type": "UNI",
+                "bar_codes": [
+                    "7896396001034"
+                ],
+                "model_internal_code": "14"
+            }
+        ],
+        "store_id": "5dfccf3c3006aa81b4f242e2",
+        "status": "ib_closed",
+        "delivery_tax": 10.0,
+        "seen": true,
+        "created_at": "2020-01-24T12:20:36.439000+00:00",
+        "delivery_hour": {
+            "id": "tv27e2aD",
+            "end_time": "18:00",
+            "start_time": "14:00",
+            "delivery_date": "2020-01-28T14:00:00+00:00"
+        },
+        "should_replace_missing_products": false,
+        "code": "VXG9-ZGB7",
+        "comment": "Casa dos fundos",
+        "schedule": true,
+        "platform": "ib_web",
+        "delivery_info": {
+            "city": "Campos dos Goytacazes",
+            "country": "Brasil",
+            "street_number": "117",
+            "complement": "Casa - Rua do Arantes",
+            "neighborhood": "Parque Bandeirantes",
+            "street": "Rua Atanagildo de Freitas",
+            "state": "RJ",
+            "zipcode": "28085-210"
+        },
+        "last_modified": "2020-01-24T18:45:35.329000+00:00",
+        "kits": [],
+        "device": "Unknown;Windows;Chrome",
+        "subtotal": 67.4,
+        "discount": 0.0,
+        "total": 77.4
+    },
+    "status": "success",
+    "count": 1,
+    "http_status": 200
+}
+```
+
+### HTTP Request
+`PUT /order/cnpj/<store-cnpj>/order_id/<order-id>`
+
+#### Available parameters
+Parameter | Type | Constraint | Description
+-------------- | --------------  | -------------- | -------------- 
+`status` | string | required | See [Buy Status](#buy-status-properties).
+
 
 ## Register invoice
 This API allows you to register invoice to buy.
@@ -386,4 +676,4 @@ curl -X PUT \
 ```
 
 ### HTTP Request
-`PUT /api_tetra/payment/cnpj/<store-cnpj>/<buy-id>`
+`PUT /payment/cnpj/<store-cnpj>/<buy-id>`
