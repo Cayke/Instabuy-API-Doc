@@ -246,7 +246,7 @@ This API allows you to retrieve and get buys.
 Attribute | Type | Description
 -------------- | -------------- | -------------- 
 `id` | string |	Unique identifier for the resource.
-`created_at` | datetime | The date the resource was created, as GMT.
+`created_at` | datetime | The date the resource was created.
 `code` | string | Buy code.
 `delivery_tax` | float | Buy delivery tax.
 `status_history` | Array | List of status history. See [Status History](#buy-status-history-properties).
@@ -263,7 +263,7 @@ Attribute | Type | Description
 ## Buy - Status History properties
 Attribute | Type | Description
 -------------- | -------------- | -------------- 
-`created_at` | datetime | The date the resource was created, as GMT.
+`created_at` | datetime | The date the resource was created.
 `message` | string | Message.
 `old_status` | string | Old status.
 `new_status` | string | New status.
@@ -271,7 +271,7 @@ Attribute | Type | Description
 ## Buy - Delivery Hour properties
 Attribute | Type | Description
 -------------- | -------------- | -------------- 
-`delivery_date` | datetime | The date the resource was created, as GMT.
+`delivery_date` | datetime | The date the resource was created.
 `start_time` | string | Message.
 `end_time` | string | Old status.
 
