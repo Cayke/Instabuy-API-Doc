@@ -163,7 +163,7 @@ curl --location --request PUT 'https://api.instabuy.com.br/store/products' \
 ```
 
 ### HTTP Request
-`POST /products/cnpj/<store_cnpj>`
+`PUT /products/cnpj/<store_cnpj>`
 
 #### Available parameters
 Parameter | Type | Constraint | Description
@@ -287,9 +287,9 @@ Status | Description
 This API allows you to get buys.
 
 ```shell
-curl -X GET \
-  http://localhost:8000/api_tetra/orders-pending/cnpj/23406149000170 \
-  -H 'api-token: 18aaab24-581b-4e1d-9a44-e876cb4cea22' \
+curl --location --request GET 'https://api.instabuy.com.br/store/buys?status=open' \
+--header 'api-key: uF9xALutdqfjPUnfbU1sKfYvITu-L5zgIQ5sTAoMRfw' \
+--header 'Content-Type: application/json'
 ```
 
 > JSON response example:
@@ -298,91 +298,674 @@ curl -X GET \
 {
     "data": [
         {
-            "client_ip": "164.41.42.18",
-            "created_at": "2019-11-01T20:25:10.608000+00:00",
-            "client": "5ce4323d6b8fbe43963e2427",
-            "status": "ib_ready",
-            "status_history": [
+            "client_ip": "201.2.11.2",
+            "client": {
+                "first_name": "João Victor",
+                "user_type": "PF",
+                "cpf": "058.007.521-41",
+                "card_errors_count": 0,
+                "last_name": "Jorge",
+                "created_at": "2018-02-22T21:43:00+00:00",
+                "last_modified": "2020-02-29T12:17:12.557000+00:00",
+                "email": "joaovictor_jorge@outlook.com",
+                "id": "5a8f396494e429428be13aa9",
+                "gender": "M",
+                "phone": "(61)99000-0000",
+                "birthday": "1999-03-21T12:00:00+00:00"
+            },
+            "buy_type": "coll",
+            "payment_info": {
+                "method": "cash",
+                "value": "250.0"
+            },
+            "comment": "",
+            "created_at": "2020-01-20T19:14:07.036000+00:00",
+            "last_modified": "2020-01-20T19:15:25.286000+00:00",
+            "store_id": "55c17d73072d4126ea180fe5",
+            "schedule": false,
+            "platform": "ib_web",
+            "should_replace_missing_products": false,
+            "id": "5e25fbff07e6536be49f1eea",
+            "seen": true,
+            "device": "Unknown;Windows;Chrome",
+            "billet_percent_discount": 0.0,
+            "products": [
                 {
-                    "author": "cayke@teste.com",
-                    "created_at": "2019-11-06T23:39:23.628000+00:00",
-                    "old_status": "ib_wait_auth",
-                    "new_status": "ib_store_processing",
-                    "message": "Alteração de status: Esperando Autorização -> Processando"
+                    "model_title": "default",
+                    "price": 129.9,
+                    "qtd_ordered": 1.0,
+                    "name": "Blusa Lança Perfume Floral Multicolorida",
+                    "qtd": 0.0,
+                    "bar_codes": [
+                        "7896496917044"
+                    ],
+                    "unit_type": "UNI",
+                    "subcategory": "562ad0e4072d41701b289f8f",
+                    "image": "20151024032583937874d2b6235ecf64288b1d645b708003b36.jpg",
+                    "model_internal_code": "1",
+                    "model_id": "3fdef4d17a1d4122",
+                    "id": "562ad1bc072d417034289f8e"
                 },
                 {
-                    "author": "cayke10@gmail.com",
-                    "created_at": "2019-12-11T19:17:30.281000+00:00",
-                    "old_status": "ib_store_processing",
-                    "new_status": "ib_ready",
-                    "message": "Alteração de status: Processando -> Produtos separados"
+                    "model_title": "default",
+                    "price": 90.15,
+                    "name": "Bermuda Sarja Reserva Army Básica",
+                    "qtd": 1.0,
+                    "bar_codes": [
+                        "7892840268046"
+                    ],
+                    "unit_type": "UNI",
+                    "subcategory": "562add93072d41709b289f8e",
+                    "image": "2015102412525016200d8ac27ff0344a8db2fb3a59faa7d513.jpg",
+                    "model_internal_code": "RE499APM49PRQDB",
+                    "model_id": "200749d4cc814f12",
+                    "id": "562addf0072d41709b289f8f"
                 }
             ],
-            "seen": true,
-            "delivery_tax": 15.0,
-            "should_replace_missing_products": false,
-            "buy_type": "deli",
-            "id": "5dbc94a66beb9440d5acd000",
+            "online_payment_transaction_info": {},
             "kits": [],
+            "code": "ZSQO-B71R",
+            "status_history": [
+                {
+                    "created_at": "2020-01-20T19:15:14.465000+00:00",
+                    "old_status": "ib_wait_auth",
+                    "message": "Alteração de status: Esperando Autorização -> Processando",
+                    "new_status": "ib_store_processing",
+                    "author": "ravierlopes2323@gmail.com"
+                }
+            ],
+            "creator": "unknown",
+            "status": "ib_store_processing"
+        },
+        {
+            "client_ip": "201.2.11.2",
+            "client": {
+                "first_name": "João Victor",
+                "user_type": "PF",
+                "cpf": "058.007.521-41",
+                "card_errors_count": 0,
+                "last_name": "Jorge",
+                "created_at": "2018-02-22T21:43:00+00:00",
+                "last_modified": "2020-02-29T12:17:12.557000+00:00",
+                "email": "joaovictor_jorge@outlook.com",
+                "id": "5a8f396494e429428be13aa9",
+                "gender": "M",
+                "phone": "(61)99000-0000",
+                "birthday": "1999-03-21T12:00:00+00:00"
+            },
+            "buy_type": "coll",
+            "payment_info": {
+                "method": "cash",
+                "value": "150.0"
+            },
+            "comment": "",
+            "created_at": "2020-01-20T19:12:49.700000+00:00",
+            "last_modified": "2020-03-02T17:32:14.080000+00:00",
             "store_id": "55c17d73072d4126ea180fe5",
+            "schedule": false,
+            "platform": "ib_web",
+            "should_replace_missing_products": false,
+            "id": "5e25fbb107e6536be49f1e17",
+            "separator_email": "separador@ib.com",
+            "seen": true,
+            "device": "Unknown;Windows;Chrome",
+            "billet_percent_discount": 0.0,
+            "products": [
+                {
+                    "model_title": "default",
+                    "price": 129.9,
+                    "name": "Blusa Lança Perfume Floral Multicolorida",
+                    "qtd": 1.0,
+                    "bar_codes": [
+                        "7896496917044"
+                    ],
+                    "unit_type": "UNI",
+                    "subcategory": "562ad0e4072d41701b289f8f",
+                    "image": "20151024032583937874d2b6235ecf64288b1d645b708003b36.jpg",
+                    "model_internal_code": "1",
+                    "model_id": "3fdef4d17a1d4122",
+                    "id": "562ad1bc072d417034289f8e"
+                }
+            ],
+            "online_payment_transaction_info": {},
+            "kits": [],
+            "code": "GZ6G-PCUV",
+            "status_history": [
+                {
+                    "created_at": "2020-03-02T17:32:14.067000+00:00",
+                    "old_status": "ib_wait_auth",
+                    "message": "Alteração de status: Esperando Autorização -> Processando",
+                    "new_status": "ib_store_processing",
+                    "author": "separador@ib.com"
+                }
+            ],
+            "creator": "unknown",
+            "status": "ib_store_processing"
+        },
+        {
+            "client_ip": "189.75.101.248",
+            "client": {
+                "first_name": "Cayke",
+                "user_type": "PF",
+                "cpf": "034.874.481-14",
+                "card_errors_count": 0,
+                "last_name": "Prudente",
+                "created_at": "2016-02-27T17:08:54+00:00",
+                "last_modified": "2019-12-19T14:11:42.954000+00:00",
+                "email": "cayke10@gmail.com",
+                "id": "56d1d826072d4127fb6fb9f9",
+                "gender": "M",
+                "phone": "(61)99161-3871",
+                "birthday": "1993-05-22T12:00:00+00:00"
+            },
+            "installment": {
+                "interest": 0.0,
+                "installments_number": 3,
+                "buy_min_value": 0.0
+            },
+            "buy_type": "coll",
+            "payment_info": {
+                "method": "pagar_me_credit"
+            },
+            "comment": "",
+            "created_at": "2019-12-03T15:52:50.290000+00:00",
+            "last_modified": "2019-12-17T22:09:05.087000+00:00",
+            "store_id": "55c17d73072d4126ea180fe5",
+            "schedule": false,
+            "platform": "ib_web",
+            "should_replace_missing_products": false,
+            "id": "5de684d2a94838107510b28b",
+            "seen": true,
+            "device": "Unknown;Mac;Chrome",
+            "billet_percent_discount": 0.0,
+            "products": [
+                {
+                    "model_title": "default",
+                    "price": 12.0,
+                    "name": "Açai ",
+                    "qtd": 2.0,
+                    "bar_codes": [],
+                    "unit_type": "KG",
+                    "subcategory": "5cec1b66548656f0e85939ab",
+                    "image": "1dacc25581a14997ae40a39645cfaaa0.jpeg",
+                    "model_internal_code": "fdd9f00a92",
+                    "model_id": "74e22366ec5f4b85",
+                    "id": "5cec1b4678a584c4645934ee"
+                },
+                {
+                    "model_title": "default",
+                    "price": 65.0,
+                    "name": "Camiseta Colcci Clean Azul",
+                    "qtd": 1.0,
+                    "bar_codes": [],
+                    "unit_type": "UNI",
+                    "subcategory": "562ad0e4072d41701b289f8f",
+                    "image": "201510240380720919bb50e3e0825b4fd7ba5dc1a05e1c43a1.jpg",
+                    "model_internal_code": "4",
+                    "model_id": "e146b29f1a24429b",
+                    "id": "562ad2ea072d41703d289f8f"
+                }
+            ],
+            "online_payment_transaction_info": {},
+            "kits": [],
+            "code": "TXAI-I85R",
+            "status_history": [
+                {
+                    "created_at": "2019-12-17T22:09:05.044000+00:00",
+                    "old_status": "ib_wait_auth",
+                    "message": "Alteração de status: Esperando Autorização -> Pedido a caminho",
+                    "new_status": "ib_on_the_way",
+                    "author": "system"
+                }
+            ],
+            "creator": "unknown",
+            "status": "ib_on_the_way"
+        },
+        {
+            "client_ip": "189.75.101.248",
+            "client": {
+                "first_name": "Cayke",
+                "user_type": "PF",
+                "cpf": "034.874.481-14",
+                "card_errors_count": 0,
+                "last_name": "Prudente",
+                "created_at": "2016-02-27T17:08:54+00:00",
+                "last_modified": "2019-12-19T14:11:42.954000+00:00",
+                "email": "cayke10@gmail.com",
+                "id": "56d1d826072d4127fb6fb9f9",
+                "gender": "M",
+                "phone": "(61)99161-3871",
+                "birthday": "1993-05-22T12:00:00+00:00"
+            },
+            "buy_type": "coll",
+            "payment_info": {
+                "method": "check"
+            },
+            "comment": "",
+            "created_at": "2019-12-03T15:45:22.190000+00:00",
+            "last_modified": "2019-12-19T16:37:04.122000+00:00",
+            "store_id": "55c17d73072d4126ea180fe5",
+            "schedule": false,
+            "platform": "ib_web",
+            "should_replace_missing_products": false,
+            "id": "5de68312f3112b453d10b1fa",
+            "seen": true,
+            "device": "Unknown;Mac;Chrome",
+            "billet_percent_discount": 0.0,
+            "products": [
+                {
+                    "model_title": "default",
+                    "price": 12.0,
+                    "qtd_ordered": 2.0,
+                    "name": "Açai ",
+                    "qtd": 1.0,
+                    "bar_codes": [],
+                    "unit_type": "KG",
+                    "subcategory": "5cec1b66548656f0e85939ab",
+                    "image": "1dacc25581a14997ae40a39645cfaaa0.jpeg",
+                    "model_internal_code": "fdd9f00a92",
+                    "model_id": "74e22366ec5f4b85",
+                    "id": "5cec1b4678a584c4645934ee"
+                },
+                {
+                    "model_title": "default",
+                    "price": 65.0,
+                    "name": "Camiseta Colcci Clean Azul",
+                    "qtd": 1.0,
+                    "bar_codes": [],
+                    "unit_type": "UNI",
+                    "subcategory": "562ad0e4072d41701b289f8f",
+                    "image": "201510240380720919bb50e3e0825b4fd7ba5dc1a05e1c43a1.jpg",
+                    "model_internal_code": "4",
+                    "model_id": "e146b29f1a24429b",
+                    "id": "562ad2ea072d41703d289f8f"
+                }
+            ],
+            "online_payment_transaction_info": {},
+            "kits": [],
+            "code": "7CM3-A241",
+            "status_history": [
+                {
+                    "created_at": "2019-12-19T16:36:50.928000+00:00",
+                    "old_status": "ib_wait_auth",
+                    "message": "Alteração de status: Esperando Autorização -> Processando",
+                    "new_status": "ib_store_processing",
+                    "author": "ravierlopes2323@gmail.com"
+                }
+            ],
+            "creator": "unknown",
+            "status": "ib_store_processing"
+        },
+        {
+            "client_ip": "189.75.101.248",
+            "client": {
+                "first_name": "Cayke",
+                "user_type": "PF",
+                "cpf": "034.874.481-14",
+                "card_errors_count": 0,
+                "last_name": "Prudente",
+                "created_at": "2016-02-27T17:08:54+00:00",
+                "last_modified": "2019-12-19T14:11:42.954000+00:00",
+                "email": "cayke10@gmail.com",
+                "id": "56d1d826072d4127fb6fb9f9",
+                "gender": "M",
+                "phone": "(61)99161-3871",
+                "birthday": "1993-05-22T12:00:00+00:00"
+            },
+            "buy_type": "sedex",
+            "payment_info": {
+                "method": "deposit"
+            },
+            "comment": "",
+            "delivery_tax": 105.61,
+            "created_at": "2019-11-06T19:05:12.988000+00:00",
+            "last_modified": "2019-11-06T19:07:00.344000+00:00",
+            "delivery_info": {
+                "state": "RS",
+                "zipcode": "95010-000",
+                "city": "Caxias do Sul",
+                "complement": "",
+                "street_number": "213",
+                "neighborhood": "Nossa Senhora de Lourdes",
+                "street": "Avenida Júlio de Castilhos",
+                "country": "Brasil"
+            },
+            "store_id": "55c17d73072d4126ea180fe5",
+            "schedule": false,
+            "platform": "ib_web",
+            "should_replace_missing_products": false,
+            "id": "5dc3196dc4f4a207bc891d4f",
+            "correios_tracking_code": "asdsadasdasdas123124s",
+            "seen": true,
+            "device": "Unknown;Mac;Chrome",
+            "billet_percent_discount": 0.0,
+            "products": [
+                {
+                    "model_title": "default",
+                    "price": 90.15,
+                    "name": "Bermuda Sarja Reserva Army Básica",
+                    "qtd": 1.0,
+                    "bar_codes": [
+                        "7892840268046"
+                    ],
+                    "unit_type": "UNI",
+                    "subcategory": "562add93072d41709b289f8e",
+                    "image": "2015102412525016200d8ac27ff0344a8db2fb3a59faa7d513.jpg",
+                    "model_internal_code": "RE499APM49PRQDB",
+                    "model_id": "200749d4cc814f12",
+                    "id": "562addf0072d41709b289f8f"
+                }
+            ],
+            "online_payment_transaction_info": {},
+            "kits": [],
+            "code": "O4FA-SS10",
+            "status_history": [
+                {
+                    "created_at": "2019-11-06T19:06:33.432000+00:00",
+                    "old_status": "ib_wait_auth",
+                    "message": "Alteração de status: Esperando Autorização -> Pedido a caminho",
+                    "new_status": "ib_on_the_way",
+                    "author": "cayke10@gmail.com"
+                }
+            ],
+            "creator": "unknown",
+            "status": "ib_on_the_way"
+        },
+        {
+            "client_ip": "164.41.42.18",
+            "delivery_hour": {
+                "start_time": "13:00",
+                "end_time": "17:30",
+                "delivery_date": "2019-11-05T13:00:00+00:00",
+                "id": "c88ed"
+            },
+            "client": {
+                "first_name": "Giovani",
+                "user_type": "PF",
+                "cpf": "705.802.541-00",
+                "card_errors_count": 0,
+                "last_name": "Rodrigues",
+                "created_at": "2019-05-21T17:15:41.032000+00:00",
+                "last_modified": "2020-03-02T15:15:38.539000+00:00",
+                "email": "giovani.rodrigues@instabuy.com.br",
+                "id": "5ce4323d6b8fbe43963e2427",
+                "gender": "M",
+                "phone": "(61) 99874-1999",
+                "birthday": "1998-12-02T12:00:00+00:00"
+            },
+            "buy_type": "deli",
             "payment_info": {
                 "method": "cash",
                 "value": "50.0"
             },
-            "creator": "unknown",
-            "platform": "ib_web",
-            "code": "8WKC-30D0",
-            "last_modified": "2019-12-11T19:17:30.311000+00:00",
             "comment": "Compra Teste",
-            "device": "Unknown;Mac;Chrome",
+            "delivery_tax": 15.0,
+            "created_at": "2019-11-01T20:25:10.608000+00:00",
+            "last_modified": "2019-12-11T20:16:55.792000+00:00",
+            "delivery_info": {
+                "state": "DF",
+                "zipcode": "70687-305",
+                "city": "Brasília",
+                "complement": "",
+                "street_number": "02",
+                "neighborhood": "Setor Noroeste",
+                "street": "Quadra SQNW 311 Bloco A",
+                "country": "Brasil"
+            },
+            "store_id": "55c17d73072d4126ea180fe5",
             "schedule": true,
+            "platform": "ib_web",
+            "should_replace_missing_products": false,
+            "id": "5dbc94a66beb9440d5acd000",
+            "separator_email": "cayke@teste.com",
+            "seen": true,
+            "device": "Unknown;Mac;Chrome",
             "billet_percent_discount": 0.0,
             "products": [
                 {
-                    "name": "Açai ",
-                    "image": "1dacc25581a14997ae40a39645cfaaa0.jpeg",
-                    "unit_type": "UNI",
-                    "qtd": 2.0,
-                    "id": "5cec1b4678a584c4645934ee",
-                    "model_id": "74e22366ec5f4b85",
                     "model_title": "default",
-                    "model_internal_code": "fdd9f00a92",
+                    "price": 12.0,
+                    "name": "Açai ",
+                    "qtd": 2.0,
                     "bar_codes": [],
+                    "unit_type": "UNI",
                     "subcategory": "5cec1b66548656f0e85939ab",
-                    "price": 12.0
+                    "image": "1dacc25581a14997ae40a39645cfaaa0.jpeg",
+                    "model_internal_code": "fdd9f00a92",
+                    "model_id": "74e22366ec5f4b85",
+                    "id": "5cec1b4678a584c4645934ee"
                 }
             ],
+            "online_payment_transaction_info": {},
+            "kits": [],
+            "code": "8WKC-30D0",
+            "status_history": [
+                {
+                    "created_at": "2019-11-06T23:39:23.628000+00:00",
+                    "old_status": "ib_wait_auth",
+                    "message": "Alteração de status: Esperando Autorização -> Processando",
+                    "new_status": "ib_store_processing",
+                    "author": "cayke@teste.com"
+                },
+                {
+                    "created_at": "2019-12-11T19:17:30.281000+00:00",
+                    "old_status": "ib_store_processing",
+                    "message": "Alteração de status: Processando -> Produtos separados",
+                    "new_status": "ib_ready",
+                    "author": "cayke10@gmail.com"
+                },
+                {
+                    "created_at": "2019-12-11T20:16:55.539000+00:00",
+                    "old_status": "ib_ready",
+                    "message": "Alteração de status: Produtos separados -> Nota fiscal emitida",
+                    "new_status": "ib_invoice_issued",
+                    "author": "tetra"
+                }
+            ],
+            "creator": "unknown",
+            "status": "ib_invoice_issued"
+        },
+        {
+            "client_ip": "189.75.101.248",
             "delivery_hour": {
-                "delivery_date": "2019-11-05T13:00:00+00:00",
-                "end_time": "17:30",
+                "start_time": "10:00",
+                "end_time": "13:30",
+                "delivery_date": "2019-11-02T10:00:00+00:00",
+                "id": "771ee"
+            },
+            "client": {
+                "first_name": "Cayke",
+                "user_type": "PF",
+                "cpf": "034.874.481-14",
+                "card_errors_count": 0,
+                "last_name": "Prudente",
+                "created_at": "2016-02-27T17:08:54+00:00",
+                "last_modified": "2019-12-19T14:11:42.954000+00:00",
+                "email": "cayke10@gmail.com",
+                "id": "56d1d826072d4127fb6fb9f9",
+                "gender": "M",
+                "phone": "(61)99161-3871",
+                "birthday": "1993-05-22T12:00:00+00:00"
+            },
+            "lumi_id": 745627,
+            "buy_type": "deli",
+            "payment_info": {
+                "method": "debit",
+                "value": "Visa"
+            },
+            "comment": "",
+            "delivery_tax": 50.0,
+            "created_at": "2019-11-01T20:20:03.806000+00:00",
+            "last_modified": "2020-02-03T18:50:32.455000+00:00",
+            "delivery_info": {
+                "state": "DF",
+                "zipcode": "71680-373",
+                "city": "Brasília",
+                "complement": "Rua 12",
+                "street_number": "36-A",
+                "neighborhood": "Setor Habitacional Jardim Botânico (Lago Sul)",
+                "street": "Condomínio Residencial Mansões Itaipu",
+                "country": "Brasil"
+            },
+            "store_id": "55c17d73072d4126ea180fe5",
+            "schedule": true,
+            "platform": "ib_web",
+            "should_replace_missing_products": false,
+            "id": "5dbc937362bae3b2a1acd230",
+            "separator_email": "cayke@teste.com",
+            "seen": true,
+            "device": "Unknown;Mac;Chrome",
+            "billet_percent_discount": 0.0,
+            "products": [
+                {
+                    "model_title": "default",
+                    "price": 65.0,
+                    "qtd_ordered": 4.0,
+                    "name": "Camiseta Colcci Clean Azul",
+                    "qtd": 2.95,
+                    "bar_codes": [],
+                    "unit_type": "UNI",
+                    "subcategory": "562ad0e4072d41701b289f8f",
+                    "image": "201510240380720919bb50e3e0825b4fd7ba5dc1a05e1c43a1.jpg",
+                    "model_internal_code": "4",
+                    "model_id": "e146b29f1a24429b",
+                    "id": "562ad2ea072d41703d289f8f"
+                },
+                {
+                    "model_title": "default",
+                    "price": 129.9,
+                    "qtd_ordered": 1.0,
+                    "name": "Blusa Lança Perfume Floral Multicolorida",
+                    "qtd": 0.0,
+                    "bar_codes": [
+                        "7896496917044"
+                    ],
+                    "unit_type": "UNI",
+                    "subcategory": "562ad0e4072d41701b289f8f",
+                    "image": "20151024032583937874d2b6235ecf64288b1d645b708003b36.jpg",
+                    "model_internal_code": "1",
+                    "model_id": "3fdef4d17a1d4122",
+                    "id": "562ad1bc072d417034289f8e"
+                }
+            ],
+            "online_payment_transaction_info": {},
+            "kits": [],
+            "code": "BRVW-IRZF",
+            "status_history": [
+                {
+                    "created_at": "2019-11-06T23:38:55.410000+00:00",
+                    "old_status": "ib_wait_auth",
+                    "message": "Alteração de status: Esperando Autorização -> Processando",
+                    "new_status": "ib_store_processing",
+                    "author": "cayke@teste.com"
+                },
+                {
+                    "created_at": "2020-01-23T18:53:34.648000+00:00",
+                    "old_status": "ib_store_processing",
+                    "message": "Alteração de status: Processando -> Produtos separados",
+                    "new_status": "ib_ready",
+                    "author": "silvamarcioms182@gmail.com"
+                }
+            ],
+            "creator": "unknown",
+            "status": "ib_ready"
+        },
+        {
+            "client_ip": "200.163.69.246",
+            "delivery_hour": {
                 "start_time": "13:00",
+                "end_time": "17:30",
+                "delivery_date": "2019-11-05T13:00:00+00:00",
                 "id": "c88ed"
             },
-            "separator_email": "cayke@teste.com",
-            "delivery_info": {
-                "country": "Brasil",
-                "zipcode": "70687-305",
-                "state": "DF",
-                "city": "Brasília",
-                "neighborhood": "Setor Noroeste",
-                "street_number": "02",
-                "complement": "",
-                "street": "Quadra SQNW 311 Bloco A"
+            "client": {
+                "first_name": "João Victor",
+                "user_type": "PF",
+                "cpf": "058.007.521-41",
+                "card_errors_count": 0,
+                "last_name": "Jorge",
+                "created_at": "2018-02-22T21:43:00+00:00",
+                "last_modified": "2020-02-29T12:17:12.557000+00:00",
+                "email": "joaovictor_jorge@outlook.com",
+                "id": "5a8f396494e429428be13aa9",
+                "gender": "M",
+                "phone": "(61)99000-0000",
+                "birthday": "1999-03-21T12:00:00+00:00"
             },
+            "buy_type": "coll",
+            "payment_info": {
+                "method": "deposit"
+            },
+            "comment": "",
+            "created_at": "2019-11-01T20:20:03.115000+00:00",
+            "last_modified": "2019-11-03T23:25:14.167000+00:00",
+            "store_id": "55c17d73072d4126ea180fe5",
+            "schedule": true,
+            "platform": "ib_web",
+            "should_replace_missing_products": false,
+            "id": "5dbc937362bae3b2a1acd22e",
+            "seen": true,
+            "device": "Unknown;Windows;Chrome",
+            "billet_percent_discount": 0.0,
+            "products": [
+                {
+                    "model_title": "default",
+                    "price": 65.0,
+                    "name": "Camiseta Colcci Clean Azul",
+                    "qtd": 2.0,
+                    "bar_codes": [],
+                    "unit_type": "UNI",
+                    "subcategory": "562ad0e4072d41701b289f8f",
+                    "image": "201510240380720919bb50e3e0825b4fd7ba5dc1a05e1c43a1.jpg",
+                    "model_internal_code": "4",
+                    "model_id": "e146b29f1a24429b",
+                    "id": "562ad2ea072d41703d289f8f"
+                },
+                {
+                    "model_title": "default",
+                    "price": 15.0,
+                    "name": "Açai Plus",
+                    "qtd": 2.0,
+                    "bar_codes": [],
+                    "unit_type": "UNI",
+                    "subcategory": "5cec1b66548656f0e85939ab",
+                    "image": "802ca81447e14a488dd6aedff3714762.jpeg",
+                    "model_internal_code": "295c8d8711",
+                    "model_id": "9e2c2fe23d324b03",
+                    "id": "5cec1b9678a584c4645934f1"
+                }
+            ],
             "online_payment_transaction_info": {},
-            "subtotal": 24.0,
-            "discount": 0.0,
-            "total": 39.0
+            "kits": [],
+            "code": "RN6S-K7L5",
+            "status_history": [
+                {
+                    "created_at": "2019-11-03T23:25:10.954000+00:00",
+                    "old_status": "ib_wait_auth",
+                    "message": "Alteração de status: Esperando Autorização -> Processando",
+                    "new_status": "ib_store_processing",
+                    "author": "ravierlopes2323@gmail.com"
+                },
+                {
+                    "created_at": "2019-11-03T23:25:14.153000+00:00",
+                    "old_status": "ib_store_processing",
+                    "message": "Alteração de status: Processando -> Confirmado",
+                    "new_status": "ib_confirmed",
+                    "author": "ravierlopes2323@gmail.com"
+                }
+            ],
+            "creator": "unknown",
+            "status": "ib_confirmed"
         }
     ],
     "status": "success",
-    "count": 1,
+    "count": 8,
     "http_status": 200
 }
 ```
 
 ### HTTP Request
-`GET /orders-pending/cnpj/<store-cnpj>`
+`GET /buys`
 
 ## Retrieve especific buy
 This API allows you to get a buy with Id.
