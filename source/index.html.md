@@ -24,6 +24,7 @@ Welcome to **Instabuy's REST Client API**. This API allows you to provide functi
 
 To check other docs, click above:
 
+- [Admin Doc](/admin.html).
 - [Linear Sistemas Doc](/linear.html).
 - [DMCard Doc](/dmcard.html).
 - [Tetra Soluções Doc](/tetra.html).
