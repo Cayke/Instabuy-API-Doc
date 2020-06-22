@@ -121,6 +121,8 @@ Parameter | Type | Constraint | Description
 `price` | float | optional | Product regular price.
 `promo_price` | float | optional | 	Product promotional price.
 `promo_end_at` | datetime | optional | Product promotional price end date. ISO format string.
+`wholesale_price` | float | optional | Product wholesale price.
+`wholesale_qtd` | float | optional | Product minimum quantity on cart that enables wholesale price.
 `weight` | float | optional | Product weight in `kg`.
 `length` | float | optional | Product length in `cm`.
 `width` | float | optional | Product width in `cm`.
