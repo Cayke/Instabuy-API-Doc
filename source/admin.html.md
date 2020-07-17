@@ -247,6 +247,7 @@ Attribute | Type | Description
 Attribute | Type | Description
 -------------- | -------------- | --------------
 `id` | string |	Unique identifier for the resource. 
+`model_internal_code` | string | Product price internal code.
 `price` | float | Product unitary price.
 `qtd` | float | Product quantity.
 `image` | string | Product image key.
