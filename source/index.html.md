@@ -259,6 +259,7 @@ Attribute | Type | Description
 `delivery_info` | object | See [Address](#address-properties).
 `comment` | string | Client buy comment.
 `products` | array | List of Products. See[Product](#buy-product-properties).
+`installments` | string | See [Installment](#buy-installment-properties).
 
 ## Buy - Status History properties
 Attribute | Type | Description
@@ -317,6 +318,13 @@ Attribute | Type | Description
 `id` | string |	Unique identifier for the resource. 
 `qtd` | float | Product quantity.
 `name` | string | Product name.
+
+## Buy Installment properties
+Attribute | Type | Description
+-------------- | -------------- | --------------
+`installments_number` | int | Instalmments number.
+`buy_min_value` | float | Min buy value to allow this installment.
+`interest` | float | Interest per installment.
 
 ## Retrieve Buy
 This API retrieves all buys made on store.
@@ -1913,8 +1921,8 @@ This API allow you to get the home page items and banners.
 Attribute | Type | Description
 -------------- | -------------- | -------------- 
 `promo` | array |	List of Items in Promotion. See [Item properties](#item-properties).
-`collection_items` | array | List of Categories. See [Collection properties](#item-collection-properties).
-`banners` | array | List of Banners. See [Banner properties](#item-banner-properties).
+`collection_items` | array | List of Categories. See [Collection properties](#layout-collection-properties).
+`banners` | array | List of Banners. See [Banner properties](#layout-banner-properties).
 
 ## Layout - Collection properties
 Attribute | Type | Description
@@ -1922,7 +1930,7 @@ Attribute | Type | Description
 `id` | string |	Unique identifier for the resource.
 `title` | string |	Category title.
 `slug` | string | Category slug.
-`items` | array |	List of Items in Promotion. See [Item properties](#item-properties).
+`items` | array |	List of Items in category. See [Item properties](#item-properties).
 
 ## Layout - Banner properties
 Attribute | Type | Description

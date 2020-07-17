@@ -205,6 +205,8 @@ Attribute | Type | Description
 `delivery_info` | object | See [Address](#address-properties).
 `comment` | string | Client buy comment.
 `products` | array | List of Products. See[Product](#buy-product-properties).
+`installments` | string | See [Installment](#buy-installment-properties).
+`client` | object | See [User](/index.html#user-properties).
 
 ## Buy - Status History properties
 Attribute | Type | Description
@@ -263,6 +265,13 @@ Attribute | Type | Description
 `id` | string |	Unique identifier for the resource. 
 `qtd` | float | Product quantity.
 `name` | string | Product name.
+
+## Buy Installment properties
+Attribute | Type | Description
+-------------- | -------------- | --------------
+`installments_number` | int | Instalmments number.
+`buy_min_value` | float | Min buy value to allow this installment.
+`interest` | float | Interest per installment.
 
 ## Buy Status properties
 Status | Description
@@ -908,7 +917,7 @@ curl --location --request GET 'https://api.instabuy.com.br/store/buys?status=ope
 #### Available parameters
 Parameter | Type | Constraint | Description
 -------------- | --------------  | -------------- | -------------- 
-`status` | string | required | One of: `open`, `canceled`, `finished`, `fraud_suspect`, `refunded`, `chargeback`.
+`status` | string | required | One of: `open`, `erp_ready`, `canceled`, `finished`, `fraud_suspect`, `refunded`, `chargeback`.
 `page` | int | optional | Page index.
 `N` | int | optional | Number os max items to return per query.
 `order_by` | string | optional | One of: `buy`, `delivery`, `last_buy`.

@@ -204,6 +204,7 @@ Attribute | Type | Description
 `delivery_info` | object | See [Address](#address-properties).
 `comment` | string | Client buy comment.
 `products` | array | List of Products. See[Product](#buy-product-properties).
+`installments` | string | See [Installment](#buy-installment-properties).
 
 ## Buy - Status History properties
 Attribute | Type | Description
@@ -262,6 +263,13 @@ Attribute | Type | Description
 `id` | string |	Unique identifier for the resource. 
 `qtd` | float | Product quantity.
 `name` | string | Product name.
+
+## Buy Installment properties
+Attribute | Type | Description
+-------------- | -------------- | --------------
+`installments_number` | int | Instalmments number.
+`buy_min_value` | float | Min buy value to allow this installment.
+`interest` | float | Interest per installment.
 
 ## Buy Status properties
 Status | Description
