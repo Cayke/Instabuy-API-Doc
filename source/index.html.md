@@ -16,6 +16,8 @@ includes:
   # - errors
 
 search: true
+
+code_clipboard: true
 ---
 
 # Introduction
