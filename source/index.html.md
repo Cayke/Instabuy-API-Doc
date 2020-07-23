@@ -321,6 +321,7 @@ Attribute | Type | Description
 `id` | string |	Unique identifier for the resource. 
 `qtd` | float | Product quantity.
 `name` | string | Product name.
+`model_internal_code` | string | Product price internal code.
 
 ## Buy Installment properties
 Attribute | Type | Description
