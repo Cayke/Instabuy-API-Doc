@@ -130,7 +130,7 @@ This API allows you to update products.
 ```shell
 curl -X POST \
   https://api.instabuy.com.br/api_tetra/products/cnpj/23406149000170 \
-  -H 'api-token: 18aaab24-581b-4e1d-9a44-e876cb4cea22' \
+  -H 'api-token: SEU_API_TOKEN' \
   -d '{
 	"products": [
 		{
@@ -307,8 +307,8 @@ This API allows you to get buys.
 
 ```shell
 curl -X GET \
-  http://localhost:8000/api_tetra/orders-pending/cnpj/23406149000170 \
-  -H 'api-token: 18aaab24-581b-4e1d-9a44-e876cb4cea22' \
+  http://api.instabuy.com.br/api_tetra/orders-pending/cnpj/23406149000170 \
+  -H 'api-token: SEU_API_TOKEN' \
 ```
 
 > JSON response example:
@@ -408,8 +408,8 @@ This API allows you to get a buy with Id.
 
 ```shell
 curl -X GET \
-  http://localhost:8000/api_tetra/order/cnpj/23406149000170/order_id/5e0a35bf25d2b20f17e93276 \
-  -H 'api-token: 18aaab24-581b-4e1d-9a44-e876cb4cea22' \
+  http://api.instabuy.com.br/api_tetra/order/cnpj/23406149000170/order_id/5e0a35bf25d2b20f17e93276 \
+  -H 'api-token: SEU_API_TOKEN' \
 ```
 
 > JSON response example:
@@ -521,8 +521,8 @@ curl -X GET \
 This API allows you to edit a buy status.
 
 ```shell
-curl --location --request PUT 'localhost:8000/api_tetra/order/cnpj/12048636000192/order_id/5e2ae114cc97ec5dbd1855d3?status=ib_closed' \
---header 'api-token: 18aaab24-581b-4e1d-9a44-e876cb4cea22'
+curl --location --request PUT 'api.instabuy.com.br/api_tetra/order/cnpj/12048636000192/order_id/5e2ae114cc97ec5dbd1855d3?status=ib_closed' \
+--header 'api-token: SEU_API_TOKEN'
 ```
 
 > JSON response example:
@@ -670,8 +670,8 @@ This API allows you to register invoice to buy.
 
 ```shell
 curl -X PUT \
-  http://localhost:8000/api_tetra/payment/cnpj/23406149000170/5dbc94a66beb9440d5acd000 \
-  -H 'api-token: 18aaab24-581b-4e1d-9a44-e876cb4cea22' \
+  http://api.instabuy.com.br/api_tetra/payment/cnpj/23406149000170/5dbc94a66beb9440d5acd000 \
+  -H 'api-token: SEU_API_TOKEN' \
 ```
 
 > JSON response example:
