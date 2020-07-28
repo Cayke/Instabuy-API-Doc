@@ -378,7 +378,7 @@ Attribute | Type | Description
 `user_id` | string | User Id.
 `raffle_id` | string | Raffle Id.
 `invoices` | array | List with Invoices Status. See [Invoice Status](#invoice-status-properties).
-`luck_numbers` | array | List with Raffle Store Luck Numbers. See [Store Luck Numbers](#pending-coupon-properties).
+`luck_numbers` | array | List with Raffle Store Luck Numbers. See [Store Luck Numbers](#store-luck-numbers-properties).
 
 ## Invoice Status properties
 Attribute | Type | Description
