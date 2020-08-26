@@ -174,7 +174,7 @@ curl --location --request PUT 'https://api.instabuy.com.br/store/products' \
 ```
 
 ### HTTP Request
-`PUT /products/cnpj/<store_cnpj>`
+`PUT /products`
 
 #### Available parameters
 Parameter | Type | Constraint | Description
