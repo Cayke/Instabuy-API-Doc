@@ -120,6 +120,7 @@ Parameter | Type | Constraint | Description
 `barcodes` | array - [string] | optional | List with barcodes.
 `price` | float | optional | Product regular price.
 `promo_price` | float | optional | 	Product promotional price.
+`promo_start_at` | datetime | optional | Product promotional price start date. ISO format string.
 `promo_end_at` | datetime | optional | Product promotional price end date. ISO format string.
 `wholesale_price` | float | optional | Product wholesale price.
 `wholesale_qtd` | float | optional | Product minimum quantity on cart that enables wholesale price.
