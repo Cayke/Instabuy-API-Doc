@@ -114,14 +114,15 @@ This API allows you to update products info.
 Parameter | Type | Constraint | Description
 -------------- | --------------  | -------------- | -------------- 
 `internal_code` | string | required | Unique identifier for the product.
+`name` | string | required | Product name.
+`price` | float | required | Product regular price.
 `visible` | bool | optional | If product should be visible/active in e-commerce.
 `stock` | float | optional | Product stock.
-`name` | string | optional | Product name.
 `barcodes` | array - [string] | optional | List with barcodes.
-`price` | float | optional | Product regular price.
 `promo_price` | float | optional | 	Product promotional price.
 `promo_start_at` | datetime | optional | Product promotional price start date. ISO format string.
 `promo_end_at` | datetime | optional | Product promotional price end date. ISO format string.
+`auto_revoke_promo` | bool | optional | If this field is true, eventual active promo price will be removed from product when not passing valid promo fields.
 `wholesale_price` | float | optional | Product wholesale price.
 `wholesale_qtd` | float | optional | Product minimum quantity on cart that enables wholesale price.
 `weight` | float | optional | Product weight in `kg`.
