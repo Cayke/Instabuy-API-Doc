@@ -118,10 +118,11 @@ Parameter | Type | Constraint | Description
 `price` | float | required | Product regular price.
 `visible` | bool | optional | If product should be visible/active in e-commerce.
 `stock` | float | optional | Product stock.
-`barcodes` | array - [string] | optional | List with barcodes.
+`barcodes` | array - [string] | optional | List with barcodes. These codes must be EAN8, EAN12 or EAN13.
 `promo_price` | float | optional | 	Product promotional price.
 `promo_start_at` | datetime | optional | Product promotional price start date. ISO format string.
 `promo_end_at` | datetime | optional | Product promotional price end date. ISO format string.
+`aux_codes` | array - [string] | optional | List with alphanumeric codes. These codes appear in collector application.
 `auto_revoke_promo` | bool | optional | If this field is true, eventual active promo price will be removed from product when not passing valid promo fields.
 `wholesale_price` | float | optional | Product wholesale price.
 `wholesale_qtd` | float | optional | Product minimum quantity on cart that enables wholesale price.
@@ -129,6 +130,10 @@ Parameter | Type | Constraint | Description
 `length` | float | optional | Product length in `cm`.
 `width` | float | optional | Product width in `cm`.
 `height` | float | optional | Product height in `cm`.
+
+<aside class="notice">
+    For ERP integration you must pass: <b>internal_code, name, price, visible, stock, barcodes, promo_price, promo_start_at</b> and <b>promo_end_at</b>.
+</aside>
 
 
 ## Update Products
@@ -337,7 +342,20 @@ curl --location --request GET 'https://api.instabuy.com.br/store/buys?status=ope
                 }
             ],
             "device": "Unknown;Windows;Chrome",
-            "client": "5a8f396494e429428be13aa9",
+            "client": {
+                "addresses": [],
+                "cpf": "705.882.561-00",
+                "first_name": "Giovani",
+                "last_name": "Rodrigues",
+                "last_modified": "2021-01-15T19:08:16.545000+00:00",
+                "created_at": "2019-05-21T17:15:41.032000+00:00",
+                "gender": "M",
+                "user_type": "PF",
+                "phone": "(61) 99461-8398",
+                "email": "giovani@gmail.com",
+                "id": "5ce4323d6b8fbe43963e2427",
+                "birthday": "1997-122-01T12:00:00+00:00"
+            },
             "client_ip": "201.2.11.2",
             "kits": [],
             "status": "ib_store_processing",
@@ -408,7 +426,20 @@ curl --location --request GET 'https://api.instabuy.com.br/store/buys?status=ope
                 }
             ],
             "device": "Unknown;Windows;Chrome",
-            "client": "5a8f396494e429428be13aa9",
+            "client": {
+                "addresses": [],
+                "cpf": "705.882.561-00",
+                "first_name": "Giovani",
+                "last_name": "Rodrigues",
+                "last_modified": "2021-01-15T19:08:16.545000+00:00",
+                "created_at": "2019-05-21T17:15:41.032000+00:00",
+                "gender": "M",
+                "user_type": "PF",
+                "phone": "(61) 99461-8398",
+                "email": "giovani@gmail.com",
+                "id": "5ce4323d6b8fbe43963e2427",
+                "birthday": "1997-122-01T12:00:00+00:00"
+            },
             "client_ip": "201.2.11.2",
             "kits": [],
             "status": "ib_store_processing",
@@ -464,7 +495,20 @@ curl --location --request GET 'https://api.instabuy.com.br/store/buys?status=ope
                 }
             ],
             "device": "Unknown;Mac;Chrome",
-            "client": "56d1d826072d4127fb6fb9f9",
+            "client": {
+                "addresses": [],
+                "cpf": "705.882.561-00",
+                "first_name": "Giovani",
+                "last_name": "Rodrigues",
+                "last_modified": "2021-01-15T19:08:16.545000+00:00",
+                "created_at": "2019-05-21T17:15:41.032000+00:00",
+                "gender": "M",
+                "user_type": "PF",
+                "phone": "(61) 99461-8398",
+                "email": "giovani@gmail.com",
+                "id": "5ce4323d6b8fbe43963e2427",
+                "birthday": "1997-122-01T12:00:00+00:00"
+            },
             "installment": {
                 "buy_min_value": 0.0,
                 "interest": 0.0,
@@ -534,7 +578,20 @@ curl --location --request GET 'https://api.instabuy.com.br/store/buys?status=ope
                 }
             ],
             "device": "Unknown;Mac;Chrome",
-            "client": "56d1d826072d4127fb6fb9f9",
+            "client": {
+                "addresses": [],
+                "cpf": "705.882.561-00",
+                "first_name": "Giovani",
+                "last_name": "Rodrigues",
+                "last_modified": "2021-01-15T19:08:16.545000+00:00",
+                "created_at": "2019-05-21T17:15:41.032000+00:00",
+                "gender": "M",
+                "user_type": "PF",
+                "phone": "(61) 99461-8398",
+                "email": "giovani@gmail.com",
+                "id": "5ce4323d6b8fbe43963e2427",
+                "birthday": "1997-122-01T12:00:00+00:00"
+            },
             "client_ip": "189.75.101.248",
             "kits": [],
             "status": "ib_store_processing",
@@ -602,7 +659,20 @@ curl --location --request GET 'https://api.instabuy.com.br/store/buys?status=ope
                 }
             ],
             "device": "Unknown;Mac;Chrome",
-            "client": "56d1d826072d4127fb6fb9f9",
+            "client": {
+                "addresses": [],
+                "cpf": "705.882.561-00",
+                "first_name": "Giovani",
+                "last_name": "Rodrigues",
+                "last_modified": "2021-01-15T19:08:16.545000+00:00",
+                "created_at": "2019-05-21T17:15:41.032000+00:00",
+                "gender": "M",
+                "user_type": "PF",
+                "phone": "(61) 99461-8398",
+                "email": "giovani@gmail.com",
+                "id": "5ce4323d6b8fbe43963e2427",
+                "birthday": "1997-122-01T12:00:00+00:00"
+            },
             "client_ip": "189.75.101.248",
             "kits": [],
             "status": "ib_on_the_way",
@@ -687,7 +757,20 @@ curl --location --request GET 'https://api.instabuy.com.br/store/buys?status=ope
                 "id": "c88ed"
             },
             "device": "Unknown;Mac;Chrome",
-            "client": "5ce4323d6b8fbe43963e2427",
+            "client": {
+                "addresses": [],
+                "cpf": "705.882.561-00",
+                "first_name": "Giovani",
+                "last_name": "Rodrigues",
+                "last_modified": "2021-01-15T19:08:16.545000+00:00",
+                "created_at": "2019-05-21T17:15:41.032000+00:00",
+                "gender": "M",
+                "user_type": "PF",
+                "phone": "(61) 99461-8398",
+                "email": "giovani@gmail.com",
+                "id": "5ce4323d6b8fbe43963e2427",
+                "birthday": "1997-122-01T12:00:00+00:00"
+            },
             "client_ip": "164.41.42.18",
             "kits": [],
             "status": "ib_invoice_issued",
@@ -766,7 +849,20 @@ curl --location --request GET 'https://api.instabuy.com.br/store/buys?status=ope
                 "id": "771ee"
             },
             "device": "Unknown;Mac;Chrome",
-            "client": "56d1d826072d4127fb6fb9f9",
+            "client": {
+                "addresses": [],
+                "cpf": "705.882.561-00",
+                "first_name": "Giovani",
+                "last_name": "Rodrigues",
+                "last_modified": "2021-01-15T19:08:16.545000+00:00",
+                "created_at": "2019-05-21T17:15:41.032000+00:00",
+                "gender": "M",
+                "user_type": "PF",
+                "phone": "(61) 99461-8398",
+                "email": "giovani@gmail.com",
+                "id": "5ce4323d6b8fbe43963e2427",
+                "birthday": "1997-122-01T12:00:00+00:00"
+            },
             "client_ip": "189.75.101.248",
             "kits": [],
             "status": "ib_ready",
@@ -860,7 +956,20 @@ curl --location --request GET 'https://api.instabuy.com.br/store/buys?status=ope
                 "id": "c88ed"
             },
             "device": "Unknown;Windows;Chrome",
-            "client": "5a8f396494e429428be13aa9",
+            "client": {
+                "addresses": [],
+                "cpf": "705.882.561-00",
+                "first_name": "Giovani",
+                "last_name": "Rodrigues",
+                "last_modified": "2021-01-15T19:08:16.545000+00:00",
+                "created_at": "2019-05-21T17:15:41.032000+00:00",
+                "gender": "M",
+                "user_type": "PF",
+                "phone": "(61) 99461-8398",
+                "email": "giovani@gmail.com",
+                "id": "5ce4323d6b8fbe43963e2427",
+                "birthday": "1997-122-01T12:00:00+00:00"
+            },
             "client_ip": "200.163.69.246",
             "kits": [],
             "status": "ib_confirmed",
@@ -926,6 +1035,10 @@ Parameter | Type | Constraint | Description
 `N` | int | optional | Number os max items to return per query.
 `order_by` | string | optional | One of: `buy`, `delivery`, `last_buy`.
 
+<aside class="notice">
+    For ERP integration you must pass status : <b>erp_ready</b>. This status returns all buys that are ready for invoice issuing. After generating the invoice, you must edit buy status to <b>ib_invoice_issued</b>.
+</aside>
+
 ## Retrieve especific buy
 This API allows you to get a buy with Id.
 
@@ -969,7 +1082,20 @@ curl --location --request GET 'https://api.instabuy.com.br/store/buys?id=5cec1b9
             "id": "c88ed"
         },
         "device": "Unknown;Windows;Chrome",
-        "client": "5a8f396494e429428be13aa9",
+        "client": {
+                "addresses": [],
+                "cpf": "705.882.561-00",
+                "first_name": "Giovani",
+                "last_name": "Rodrigues",
+                "last_modified": "2021-01-15T19:08:16.545000+00:00",
+                "created_at": "2019-05-21T17:15:41.032000+00:00",
+                "gender": "M",
+                "user_type": "PF",
+                "phone": "(61) 99461-8398",
+                "email": "giovani@gmail.com",
+                "id": "5ce4323d6b8fbe43963e2427",
+                "birthday": "1997-122-01T12:00:00+00:00"
+            },
         "client_ip": "200.163.69.246",
         "kits": [],
         "status": "ib_confirmed",
@@ -1075,7 +1201,20 @@ curl --location --request PUT 'https://api.instabuy.com.br/store/buys?id=5dbc937
             "id": "c88ed"
         },
         "device": "Unknown;Windows;Chrome",
-        "client": "5a8f396494e429428be13aa9",
+        "client": {
+                "addresses": [],
+                "cpf": "705.882.561-00",
+                "first_name": "Giovani",
+                "last_name": "Rodrigues",
+                "last_modified": "2021-01-15T19:08:16.545000+00:00",
+                "created_at": "2019-05-21T17:15:41.032000+00:00",
+                "gender": "M",
+                "user_type": "PF",
+                "phone": "(61) 99461-8398",
+                "email": "giovani@gmail.com",
+                "id": "5ce4323d6b8fbe43963e2427",
+                "birthday": "1997-122-01T12:00:00+00:00"
+            },
         "client_ip": "200.163.69.246",
         "kits": [],
         "status": "ib_confirmed",
