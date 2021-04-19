@@ -102,7 +102,9 @@ All fields that represent images have only the image Identifier and not the imag
 
 To download images, you must append the image key with Instabuy assets URL.
 
-To download product images the base url is `https://assets.instabuy.com.br/ib.item.image.YYYY/X-{{product_image_key}}`.
+To download product images the base url is:
+
+`https://assets.instabuy.com.br/ib.item.image.YYYY/X-{{product_image_key}}`.
 
 Where YYYY and X are the pairs that indicates the image resolution.
 
@@ -114,7 +116,9 @@ Resolution (in pixels) | YYYY | X
 1200 x 1200 | large | l
 
 
-Exemple of product image with medium resolution and with image key == 20161023214840752541600349dcf4284c2592bd49355774b7b1.jpg:  `https://assets.instabuy.com.br/ib.item.image.medium/m-20161023214840752541600349dcf4284c2592bd49355774b7b1.jpg`
+Exemple of product image with medium resolution and with image key == 20161023214840752541600349dcf4284c2592bd49355774b7b1.jpg: 
+
+`https://assets.instabuy.com.br/ib.item.image.medium/m-20161023214840752541600349dcf4284c2592bd49355774b7b1.jpg`
 
 # Authentication
 
