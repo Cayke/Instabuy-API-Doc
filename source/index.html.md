@@ -114,7 +114,23 @@ E.g: To get the categories menu of a store you should implement one of the tree 
 
 ## Images
 All fields that represent images have only the image Identifier and not the image URL.
-<!-- todo -->
+
+To download images, you must append the image key with Instabuy assets URL.
+
+To download product images the base url is `https://assets.instabuy.com.br/ib.item.image.YYYY/X-{{product_image_key}}`.
+
+Where YYYY and X are the pairs that indicates the image resolution.
+
+Resolution (in pixels) | YYYY | X
+-------------- | -------------- | --------------
+150 x 150 | small | s
+300 x 300 | medium | m
+600 x 600 | big | b
+1200 x 1200 | large | l
+
+
+Exemple of product image with medium resolution and with image key == 20161023214840752541600349dcf4284c2592bd49355774b7b1.jpg:  `https://assets.instabuy.com.br/ib.item.image.medium/m-20161023214840752541600349dcf4284c2592bd49355774b7b1.jpg`
+
 
 # Authentication
 
