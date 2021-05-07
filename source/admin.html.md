@@ -149,6 +149,7 @@ Parameter | Type | Constraint | Description
 `length` | float | optional | Product length in `cm`.
 `width` | float | optional | Product width in `cm`.
 `height` | float | optional | Product height in `cm`.
+`unit_type` | str | optional | Product unit type. Possible types: [`UNI`, `KG`, `BOX`, `M2`, `M`, `L`].
 
 <aside class="notice">
     For ERP integration you must pass: <b>internal_code, name, price, visible, stock, barcodes, promo_price, promo_start_at</b> and <b>promo_end_at</b>.
@@ -1293,5 +1294,6 @@ curl --location --request PUT 'https://api.instabuy.com.br/store/buys?id=5dbc937
 #### Available parameters
 Parameter | Type | Constraint | Description
 -------------- | --------------  | -------------- | -------------- 
-`id` | string | required | Buy id.
+`id` | string | optional | Buy id.
+`erp_id` | int | optional | Buy erp id.
 `status` | string | required | See [Buy Status](#buy-status-properties).
